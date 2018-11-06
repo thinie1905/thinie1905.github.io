@@ -12,6 +12,7 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
+    // Download the drawing on the canvas
     function downloadPic(){	
 	var button = document.getElementById('btn-download');
 	button.addEventListener('click', function (e) {
@@ -113,6 +114,9 @@
         // If the browser supports the canvas tag, get the 2d drawing context for this canvas
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
+	    
+	// Load the model
+	model = await tf.loadModel('model/model.json');
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
