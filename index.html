@@ -1,10 +1,10 @@
 <html>
 <head>
 <title>Deep Learning in Draw-a-Person Cognitive Ability Test</title>
-	
-<link rel="javascript" type="text/javascript" href="js/testingcanvas.js" />
 
 <link rel="stylesheet" type="text/css" href="css/testcanvas.css" />
+	
+<script type="text/javascript" src="js/testingcanvas.js"></script>
 </head>
 
 <body onload="init()">
@@ -14,14 +14,6 @@
              On a touchscreen, draw something by tapping or dragging.<br/><br/>
 			 
              <input type="button" value="Download" id="btn-download" onclick="clearCanvas(canvas,ctx);" download="drawing.png"> &emsp; <input type="submit" value="Clear" id="clearbutton" onclick="clearCanvas(canvas,ctx);"></center>
-        
-			<script>
-				var button = document.getElementById('btn-download');
-				button.addEventListener('click', function (e) {
-					var dataURL = canvas.toDataURL('image/png');
-					button.href = dataURL;
-				});
-			</script>
 		
 		</div>
         <div class="bottom">
