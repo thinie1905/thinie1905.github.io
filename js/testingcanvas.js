@@ -12,6 +12,14 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
+    function downloadPic(){	
+	var button = document.getElementById('btn-download');
+	button.addEventListener('click', function (e) {
+		var dataURL = canvas.toDataURL('image/png');
+		button.href = dataURL;
+	});
+    }
+
     // Keep track of the mouse button being pressed and draw a dot at current location
     function sketchpad_mouseDown() {
         mouseDown=1;
