@@ -22,7 +22,7 @@
     }
 
     //record the current drawing coordinates 	  
-    function recordCoor(event){
+    /*function recordCoor(event){
 	    //get current mouse coordinate 
 	    var pointer = canvas.getPointer(event.e);
   	    var posX = pointer.x;
@@ -110,7 +110,7 @@
 		    //set the table 
         	    setTable(names, probs) */
     		}
-    }
+    }*/
     
 
     // Keep track of the mouse button being pressed and draw a dot at current location
