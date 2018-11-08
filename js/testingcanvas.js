@@ -125,7 +125,7 @@
     // Keep track of the mouse button being released
     function sketchpad_mouseUp() {
         mouseDown=0;
-	getFrame();
+	//getFrame();
     }
 
     // Keep track of the mouse position and draw a dot if mouse button is currently pressed
