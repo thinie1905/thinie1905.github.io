@@ -2,10 +2,10 @@
 <head>
 <title>Deep Learning in Draw-a-Person Cognitive Ability Test</title>
 
-<!-- Javascript -->
+<!-- CSS -->
 <link rel="stylesheet" type="text/css" href="css/testcanvas.css" />
 
-<!-- CSS -->
+<!-- Javascript -->
 <script type="text/javascript" src="js/testingcanvas.js"></script>
 	
 <!-- TensorFlow JS Script -->
@@ -19,15 +19,8 @@
              <center>Draw something by holding down the mouse button or using single clicks.<br/><br/>
              On a touchscreen, draw something by tapping or dragging.<br/><br/>
 			 
-            <a href="#" type="button" id="btn-download" download="drawing.png">Download</a> &emsp; <input type="submit" value="Clear" id="clearbutton" onclick="clearCanvas(canvas,ctx);"></center>
+            <a href="#" type="button" id="btn-download" onclick="downloadPic();" download="drawing.png">Download</a> &emsp; <input type="submit" value="Clear" id="clearbutton" onclick="clearCanvas(canvas,ctx);"></center>
         
-			<script>
-				var button = document.getElementById('btn-download');
-				button.addEventListener('click', function (e) {
-					var dataURL = canvas.toDataURL('image/png');
-					button.href = dataURL;
-				});
-			</script>
 		</div>
         <div class="bottom">
             <canvas id="sketchpad" height="450" width="600">
