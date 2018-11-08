@@ -1,4 +1,4 @@
-   // Variables for referencing the canvas and 2dcanvas context
+    // Variables for referencing the canvas and 2dcanvas context
     var canvas,ctx;
 
     // Variables to keep track of the mouse position and left-button status 
@@ -12,7 +12,6 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    // Download the drawing on the canvas
     function downloadPic(){	
 	var button = document.getElementById('btn-download');
 	button.addEventListener('click', function (e) {
