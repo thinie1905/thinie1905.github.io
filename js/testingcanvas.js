@@ -1,4 +1,4 @@
-    // Variables for referencing the canvas and 2dcanvas context
+// Variables for referencing the canvas and 2dcanvas context
     var canvas,ctx;
 
     // Variables to keep track of the mouse position and left-button status 
