@@ -209,7 +209,7 @@
             ctx = canvas.getContext('2d');
 	    
 	// Load the model
-	model = await tf.loadModel('model/model.json');
+	//model = await tf.loadModel('model/model.json');
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
