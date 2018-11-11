@@ -15,15 +15,17 @@
 <body onload="init()">
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
   	<!-- Brand/logo -->
-	    <a class="navbar-brand" href="#">Deep Learning in <b>Draw-a-Person</b> Cognitive Ability Test</a>
+	    <a class="navbar-brand" href="#">Deep Learning in Draw-a-Person Cognitive Ability Test</a>
     </nav>
     <div id="sketchpadapp">
         <div class="top">
-             <center>Draw something by holding down the mouse button or using single clicks.<br/><br/>
-             On a touchscreen, draw something by tapping or dragging.<br/><br/>
+             <blockquote class="blockquote text-justify" style="margin:30px;">
+		<p>Draw something by holding down the mouse button or using single clicks.<br/><br/>
+		     On a touchscreen, draw something by tapping or dragging.</p><br/><br/>
 			 
-             <a href="#" type="button" id="btn-download" download="drawing.png">Download</a> &emsp; <input type="submit" value="Clear" id="clearbutton" onclick="clearCanvas(canvas,ctx);"></center>
-        
+		     <center><a href="#" type="button" id="btn-download" download="drawing.png">Download</a> &emsp; <input type="submit" value="Clear" id="clearbutton" onclick="clearCanvas(canvas,ctx);"></center>
+		</blockquote>
+		     
 			<script>
 				var button = document.getElementById('btn-download');
 				button.addEventListener('click', function (e) {
