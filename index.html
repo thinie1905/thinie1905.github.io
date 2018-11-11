@@ -20,11 +20,13 @@
     <div id="sketchpadapp">
         <div class="top">
              <blockquote class="blockquote text-justify" style="margin:30px;">
-		<p>Draw something by holding down the mouse button or using single clicks.<br/><br/>
+		<p>Draw something by holding down the mouse button or using single clicks.<br/>
 		     On a touchscreen, draw something by tapping or dragging.</p><br/>
-		     <center><a href="#" type="button" id="btn-download" download="drawing.png">Download</a> &emsp; <input type="submit" value="Clear" id="clearbutton" onclick="clearCanvas(canvas,ctx);"></center>
+		     <footer class="blockquote-footer">NURAINA FATHINIE | UTP</footer>
+		     <center><button type="button" href="#" id="btn-download" download="drawing.png">Download</button> &emsp; <button type="button" id="clearbutton" onclick="clearCanvas(canvas,ctx);" disabled>Clear</button></center>		     
+		     <h5 id = 'status'>Loading Model...</h5>
 		</blockquote>
-		     
+				     
 			<script>
 				var button = document.getElementById('btn-download');
 				button.addEventListener('click', function (e) {
@@ -35,8 +37,10 @@
 		
 		</div>
         <div class="bottom">
-            <canvas id="sketchpad" height="450" width="600">
-            </canvas>
+		<div class="col" style ='margin-left:100px;'>
+            		<canvas id="sketchpad" height="450" width="600">
+           		</canvas>
+		
         </div>
     </div>
 </body>
