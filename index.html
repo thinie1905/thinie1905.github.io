@@ -25,6 +25,17 @@
 		     <footer class="blockquote-footer">NURAINA FATHINIE | UTP</footer>
 		     <br/><center><h5 id = 'status'>Loading Model...</h5></center>
 		     <center><button type="button" id="clearbutton" >Result</button> &emsp; <a type="button" href="#" id="btn-download" download="drawing.png">Download</a> &emsp; <button type="button" id="clearbutton" onclick="clearCanvas(canvas,ctx);">Clear</button></center>		     
+		     <br/><center>
+		     	<table class="resultTable">
+				<tr>
+					<th>Description</th>
+					<th>Result</th>
+				</tr>
+				<tr>
+					<td id="desc1"></td>
+					<td id="res1"></td>
+				</tr>
+		     </table>
 		</blockquote>
 				     
 			<script>
@@ -38,7 +49,7 @@
 		</div><br/>
         <div class="bottom">
 		<div class="col" style ='margin-left:20px;'>
-            		<canvas id="sketchpad" height="450" width="600">
+            		<canvas id="sketchpad" height="400" width="900">
            		</canvas>
 		
         </div>
