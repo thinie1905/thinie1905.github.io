@@ -1,5 +1,5 @@
 // Variables for referencing the canvas and 2dcanvas context
-    var canvas,ctx;
+    var canvas, ctx;
 
     // Variables to keep track of the mouse position and left-button status 
     var mouseX,mouseY,mouseDown=0;
@@ -55,24 +55,24 @@
 
     // Draw something when a touch start is detected
     function sketchpad_touchStart() {
-        // Update the touch co-ordinates
-        getTouchPos();
-		
-		ctx.beginPath();
-		ctx.moveTo(touchX, touchY);
-
-        // Prevents an additional mousedown event being triggered
-        event.preventDefault();
+	    //Update the touch coordinates
+	    getTouchPos();
+	    
+	    ctx.beginPath();
+	    ctx.moveTo(touchX, touchY);
+	    
+	    //Prevents scrolling action - result to touchmove triggering
+	    event.preventDefault();
     }
+  
 
-    // Draw something and prevent the default scrolling when touch movement is detected
-    function sketchpad_touchMove(e) { 
+function sketchpad_touchMove(e) { 
         // Update the touch co-ordinates
         getTouchPos(e);
 
-		//Draw line stroke
-		ctx.lineTo(touchX, touchY);
-		ctx.stroke();
+	//Draw line stroke
+	ctx.lineTo(touchX, touchY);
+	ctx.stroke();
 		
 		
         // Prevent a scrolling action as a result of this touchmove triggering.
