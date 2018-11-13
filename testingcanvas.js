@@ -53,6 +53,23 @@
         }
      }
 
+    // Get the touch position relative to the top-left of the canvas
+    // When we get the raw values of pageX and pageY below, they take into account the scrolling on the page
+    // but not the position relative to our target div. We'll adjust them using "target.offsetLeft" and
+    // "target.offsetTop" to get the correct values in relation to the top left of the canvas.
+    function getTouchPos(e) {
+        if (!e)
+            var e = event;
+
+        if(e.touches) {
+            if (e.touches.length == 1) { // Only deal with one finger
+                var touch = e.touches[0]; // Get the information for finger #1
+                touchX=touch.pageX-touch.target.offsetLeft;
+                touchY=touch.pageY-touch.target.offsetTop;
+            }
+        }
+    }
+
     // Draw something when a touch start is detected
     function sketchpad_touchStart() {
 	    //Update the touch coordinates
@@ -79,24 +96,7 @@ function sketchpad_touchMove(e) {
         event.preventDefault();
     }
 
-    // Get the touch position relative to the top-left of the canvas
-    // When we get the raw values of pageX and pageY below, they take into account the scrolling on the page
-    // but not the position relative to our target div. We'll adjust them using "target.offsetLeft" and
-    // "target.offsetTop" to get the correct values in relation to the top left of the canvas.
-    function getTouchPos(e) {
-        if (!e)
-            var e = event;
-
-        if(e.touches) {
-            if (e.touches.length == 1) { // Only deal with one finger
-                var touch = e.touches[0]; // Get the information for finger #1
-                touchX=touch.pageX-touch.target.offsetLeft;
-                touchY=touch.pageY-touch.target.offsetTop;
-            }
-        }
-    }
-
-
+   
     // Set-up the canvas and add our event handlers after the page has loaded
     function init() {
         // Get the specific canvas element from the HTML document
