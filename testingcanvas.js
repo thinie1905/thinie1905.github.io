@@ -8,11 +8,46 @@
     var touchX,touchY;
 
     var model;
+    var coords;  //getting coordinate
 	
     // Clear the canvas context using the canvas width and height
     function clearCanvas(canvas,ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
+
+    //record the current drawing coordinates 	  
+    function recordCoor(event) {
+	    //get current mouse coordinate 
+  	    var pointer = canvas.getPointer(event.e);
+  	    var posX = pointer.x;
+  	    var posY = pointer.y;
+  
+	    //record the point if withing the canvas and the mouse is pressed 
+  	    if(posX >=0 && posY >= 0 && mousePressed) {	  
+    		    coords.push(pointer) 
+	    }
+    }
+	  
+//get the best bounding box by finding the top left and bottom right cornders    
+function getMinBox(){
+	
+   var coorX = coords.map(function(p) {return p.x});
+   var coorY = coords.map(function(p) {return p.y});
+   //find top left corner 
+   var min_coords = {
+    x : Math.min.apply(null, coorX),
+    y : Math.min.apply(null, coorY)
+   }
+   //find right bottom corner 
+   var max_coords = {
+    x : Math.max.apply(null, coorX),
+    y : Math.max.apply(null, coorY)
+   }
+   return {
+    min : min_coords,
+    max : max_coords
+   }
+}
 
     //Get current image data
     function getImageData() {
@@ -46,6 +81,24 @@
     		    return batched
 	    })
     }
+
+    //Get prediction
+    function getFrame() {
+    	if (coords.length >= 2) {
+
+        	//get the image data from the canvas 
+        	const imgData = getImageData()
+
+        	//get the prediction 
+        	const pred = model.predict(preprocess(imgData)).dataSync()
+
+        	//find the top 5 predictions 
+        	const indices = findIndicesOfMax(pred, 5)
+        	const probs = findTopValues(pred, 5)
+        	const names = getClassNames(indices)
+    	}
+    }
+	    
 
 
     // Keep track of the mouse button being pressed and draw a dot at current location
