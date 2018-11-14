@@ -8,46 +8,36 @@
     var touchX,touchY;
 
     var model;
-    var coords;  //getting coordinate
+    var coords = [];  //getting coordinate
 	
     // Clear the canvas context using the canvas width and height
     function clearCanvas(canvas,ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
-
-    //record the current drawing coordinates 	  
-    function recordCoor(event) {
-	    //get current mouse coordinate 
-  	    var pointer = canvas.getPointer(event.e);
-  	    var posX = pointer.x;
-  	    var posY = pointer.y;
-  
-	    //record the point if withing the canvas and the mouse is pressed 
-  	    if(posX >=0 && posY >= 0 && mousePressed) {	  
-    		    coords.push(pointer) 
+	  
+    //get the best bounding box by finding the top left and bottom right cornders    
+    function getMinBox(){
+	
+	    var coorX = coords.map(function(p) {return p.x});
+   	    var coorY = coords.map(function(p) {return p.y});
+   
+	    //find top left corner 
+   	    var min_coords = {
+    		    x : Math.min.apply(null, coorX),
+    		    y : Math.min.apply(null, coorY)
+   	    }
+   
+	    //find right bottom corner 
+   	    var max_coords = {
+    		    x : Math.max.apply(null, coorX),
+    		    y : Math.max.apply(null, coorY)
+	    }
+   
+	    return {
+		    min : min_coords,
+		    max : max_coords
 	    }
     }
-	  
-//get the best bounding box by finding the top left and bottom right cornders    
-function getMinBox(){
-	
-   var coorX = coords.map(function(p) {return p.x});
-   var coorY = coords.map(function(p) {return p.y});
-   //find top left corner 
-   var min_coords = {
-    x : Math.min.apply(null, coorX),
-    y : Math.min.apply(null, coorY)
-   }
-   //find right bottom corner 
-   var max_coords = {
-    x : Math.max.apply(null, coorX),
-    y : Math.max.apply(null, coorY)
-   }
-   return {
-    min : min_coords,
-    max : max_coords
-   }
-}
 
     //Get current image data
     function getImageData() {
@@ -127,9 +117,11 @@ function getMinBox(){
 		}
     }
 
-    // Get the current mouse position relative to the top-left of the canvas
+    // Get the current mouse position during mousemove
     function getMousePos(e) {
-        if (!e)
+        var pointer;
+	    
+	if (!e)
             var e = event;
 
         if (e.offsetX) {
@@ -140,6 +132,14 @@ function getMinBox(){
             mouseX = e.layerX;
             mouseY = e.layerY;
         }
+   
+	pointer.x = mouseX;
+	pointer.y = mouseY;
+	    
+    	if (mouseX >= 0 && mouseY >= 0 && mouseDown==1) {
+        	coords.push(pointer);
+    	}    
+	    
      }
 
     // Get the touch position relative to the top-left of the canvas
@@ -147,7 +147,9 @@ function getMinBox(){
     // but not the position relative to our target div. We'll adjust them using "target.offsetLeft" and
     // "target.offsetTop" to get the correct values in relation to the top left of the canvas.
     function getTouchPos(e) {
-        if (!e)
+        var pointer;
+	    
+	if (!e)
             var e = event;
 
         if(e.touches) {
@@ -155,11 +157,15 @@ function getMinBox(){
                 var touch = e.touches[0]; // Get the information for finger #1
                 touchX=touch.pageX-touch.target.offsetLeft;
                 touchY=touch.pageY-touch.target.offsetTop;
+		    
+		pointer.x = touchX;
+		pointer.y = touchY;
+		
+		if (touchX >= 0 && touchY >= 0) {
+        		coords.push(pointer)
+   		}
             }
-        }
-	else{
-
-	}
+	}   
     }
 
     // Draw something when a touch start is detected
