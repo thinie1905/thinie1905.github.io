@@ -6,11 +6,47 @@
 
     // Variables to keep track of the touch position
     var touchX,touchY;
+
+    var model;
 	
     // Clear the canvas context using the canvas width and height
     function clearCanvas(canvas,ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
+
+    //Get current image data
+    function getImageData() {
+	    //the minimum boudning box around the current drawing
+	    const mbb = getMinBox();
+
+	    //calculate the dpi of the current window (stretch crop of the canvas) 
+	    const dpi = window.devicePixelRatio;
+
+	    //extract the image data 
+	    const imgData = canvas.contextContainer.getImageData(mbb.min.x * dpi, mbb.min.y * dpi,
+						       (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
+	    return imgData;
+    }	
+
+    //Preprocess data
+    function preprocess(imgData) {
+	    return tf.tidy(()=>{
+    		    //convert the image data to a tensor 
+    		    let tensor = tf.fromPixels(imgData, numChannels= 1)
+    
+		    //resize to 28 x 28 
+    		    const resized = tf.image.resizeBilinear(tensor, [28, 28]).toFloat()
+    
+		    // Normalize the image 
+    		    const offset = tf.scalar(255.0);
+    		    const normalized = tf.scalar(1.0).sub(resized.div(offset));
+    
+		    //We add a dimension to get a batch shape 
+    		    const batched = normalized.expandDims(0)
+    		    return batched
+	    })
+    }
+
 
     // Keep track of the mouse button being pressed and draw a dot at current location
     function sketchpad_mouseDown() {
@@ -68,6 +104,9 @@
                 touchY=touch.pageY-touch.target.offsetTop;
             }
         }
+	else{
+
+	}
     }
 
     // Draw something when a touch start is detected
@@ -105,6 +144,9 @@ function sketchpad_touchMove(e) {
         // If the browser supports the canvas tag, get the 2d drawing context for this canvas
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
+	    
+	//Load the model into browser
+	model = await tf.loadModel('model/model.json')
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
