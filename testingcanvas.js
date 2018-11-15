@@ -40,7 +40,7 @@
     }*/
 
     //Get current image data
-    function getImageData() {
+    /*function getImageData() {
 	    //the minimum boudning box around the current drawing
 	    const mbb = getMinBox();
 
@@ -87,7 +87,7 @@
         	const probs = findTopValues(pred, 5)
         	const names = getClassNames(indices)
     	}
-    }
+    }*/
 	    
 
 
@@ -205,7 +205,7 @@ function sketchpad_touchMove(e) {
             ctx = canvas.getContext('2d');
 	    
 	//Load the model into browser
-	model = await tf.loadModel('model/model.json')
+	//model = await tf.loadModel('model/model.json')
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
