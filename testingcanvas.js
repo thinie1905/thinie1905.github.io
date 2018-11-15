@@ -16,7 +16,7 @@
     }
 	  
     //get the best bounding box by finding the top left and bottom right cornders    
-    function getMinBox(){
+    /*function getMinBox(){
 	
 	    var coorX = coords.map(function(p) {return p.x});
    	    var coorY = coords.map(function(p) {return p.y});
@@ -37,7 +37,7 @@
 		    min : min_coords,
 		    max : max_coords
 	    }
-    }
+    }*/
 
     //Get current image data
     function getImageData() {
@@ -133,12 +133,12 @@
             mouseY = e.layerY;
         }
    
-	pointer.x = mouseX;
+	/*pointer.x = mouseX;
 	pointer.y = mouseY;
 	    
     	if (mouseX >= 0 && mouseY >= 0 && mouseDown==1) {
         	coords.push(pointer);
-    	}    
+    	}*/    
 	    
      }
 
@@ -158,12 +158,12 @@
                 touchX=touch.pageX-touch.target.offsetLeft;
                 touchY=touch.pageY-touch.target.offsetTop;
 		    
-		pointer.x = touchX;
+		/*pointer.x = touchX;
 		pointer.y = touchY;
 		
 		if (touchX >= 0 && touchY >= 0) {
         		coords.push(pointer)
-   		}
+   		}*/
             }
 	}   
     }
