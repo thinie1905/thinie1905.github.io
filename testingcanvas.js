@@ -15,8 +15,8 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 	  
-    //get the best bounding box by finding the top left and bottom right cornders    
-    /*function getMinBox(){
+    //3. get the best bounding box by finding the top left and bottom right cornders    
+    function getMinBox(){
 	
 	    var coorX = coords.map(function(p) {return p.x});
    	    var coorY = coords.map(function(p) {return p.y});
@@ -37,10 +37,10 @@
 		    min : min_coords,
 		    max : max_coords
 	    }
-    }*/
+    }
 
-    //Get current image data
-    /*function getImageData() {
+    //2. Get current image data
+    function getImageData() {
 	    //the minimum boudning box around the current drawing
 	    const mbb = getMinBox();
 
@@ -53,7 +53,7 @@
 	    return imgData;
     }	
 
-    //Preprocess data
+    //4. Preprocess data
     function preprocess(imgData) {
 	    return tf.tidy(()=>{
     		    //convert the image data to a tensor 
@@ -72,7 +72,13 @@
 	    })
     }
 
-    //Get prediction
+    function setResult(top5) {
+	    
+	    for (var i = 0; i < top5.length; i++){
+		    let 
+
+
+    //1. Get prediction
     function getFrame() {
     	if (coords.length >= 2) {
 
@@ -84,10 +90,13 @@
 
         	//find the top 5 predictions 
         	const indices = findIndicesOfMax(pred, 5)
-        	const probs = findTopValues(pred, 5)
+        	//const probs = findTopValues(pred, 5)
         	const names = getClassNames(indices)
+		
+		//set result
+		setResult(names);
     	}
-    }*/
+    }
 	    
 
 
