@@ -13,6 +13,7 @@
     // Clear the canvas context using the canvas width and height
     function clearCanvas(canvas,ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+	coords = [];
     }
 	  
     //3. get the best bounding box by finding the top left and bottom right cornders    
@@ -74,13 +75,14 @@
 
     function setResult(top5) {
 	    
-	    for (var i = 0; i < top5.length; i++){
-		    let 
+	    let desc = document.getElementById('desc1');
+	    desc.innerHTML = top5[0];
+    }
 
 
     //1. Get prediction
     function getFrame() {
-    	if (coords.length >= 2) {
+    	if (coords.length >= 2) { //at least there is 2 coordinates recorded
 
         	//get the image data from the canvas 
         	const imgData = getImageData()
@@ -128,7 +130,7 @@
 
     // Get the current mouse position during mousemove
     function getMousePos(e) {
-        var pointer;
+        var pointer = ctx.getPointer(event.e);
 	    
 	if (!e)
             var e = event;
@@ -142,12 +144,12 @@
             mouseY = e.layerY;
         }
    
-	/*pointer.x = mouseX;
+	pointer.x = mouseX;
 	pointer.y = mouseY;
 	    
     	if (mouseX >= 0 && mouseY >= 0 && mouseDown==1) {
         	coords.push(pointer);
-    	}*/    
+    	}    
 	    
      }
 
