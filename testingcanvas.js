@@ -9,13 +9,39 @@
 
     var model;
     var coords = [];  //getting coordinate
+    var classNames = [];
 	
     // Clear the canvas context using the canvas width and height
     function clearCanvas(canvas,ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 	coords = [];
     }
-	  
+
+    function setResult(top5) {
+	    
+	    let desc = document.getElementById('desc1');
+	    desc.innerHTML = top5[0];
+    }
+	
+    //4. Preprocess data
+    function preprocess(imgData) {
+	    return tf.tidy(()=>{
+    		    //convert the image data to a tensor 
+    		    let tensor = tf.fromPixels(imgData, numChannels= 1)
+    
+		    //resize to 28 x 28 
+    		    const resized = tf.image.resizeBilinear(tensor, [28, 28]).toFloat()
+    
+		    // Normalize the image 
+    		    const offset = tf.scalar(255.0);
+    		    const normalized = tf.scalar(1.0).sub(resized.div(offset));
+    
+		    //We add a dimension to get a batch shape 
+    		    const batched = normalized.expandDims(0)
+    		    return batched
+	    })
+    }
+
     //3. get the best bounding box by finding the top left and bottom right cornders    
     function getMinBox(){
 	
@@ -54,50 +80,49 @@
 	    return imgData;
     }	
 
-    //4. Preprocess data
-    function preprocess(imgData) {
-	    return tf.tidy(()=>{
-    		    //convert the image data to a tensor 
-    		    let tensor = tf.fromPixels(imgData, numChannels= 1)
-    
-		    //resize to 28 x 28 
-    		    const resized = tf.image.resizeBilinear(tensor, [28, 28]).toFloat()
-    
-		    // Normalize the image 
-    		    const offset = tf.scalar(255.0);
-    		    const normalized = tf.scalar(1.0).sub(resized.div(offset));
-    
-		    //We add a dimension to get a batch shape 
-    		    const batched = normalized.expandDims(0)
-    		    return batched
-	    })
-    }
-
-    function setResult(top5) {
-	    
-	    let desc = document.getElementById('desc1');
-	    desc.innerHTML = top5[0];
-    }
-
-
     //1. Get prediction
     function getFrame() {
     	if (coords.length >= 2) { //at least there is 2 coordinates recorded
 
         	//get the image data from the canvas 
-        	const imgData = getImageData()
+        	const imgData = getImageData();
 
         	//get the prediction 
-        	const pred = model.predict(preprocess(imgData)).dataSync()
+        	const pred = model.predict(preprocess(imgData)).dataSync();
 
         	//find the top 5 predictions 
-        	const indices = findIndicesOfMax(pred, 5)
-        	//const probs = findTopValues(pred, 5)
+        	const indices = findIndicesOfMax(pred, 3);
         	const names = getClassNames(indices)
 		
 		//set result
 		setResult(names);
     	}
+    }
+
+    //get class name
+    function getClassNames(indices) {
+    	    var outp = []
+    
+	    for (var i = 0; i < indices.length; i++)
+        	    outp[i] = classNames[indices[i]]
+    
+	    return outp
+    }
+
+    //get indices of the top probs
+    function findIndicesOfMax(inp, count) {
+   	    var outp = [];
+    
+	    for (var i = 0; i < inp.length; i++) {
+		    outp.push(i); // add index to output array
+        	    if (outp.length > count) {
+            		    outp.sort(function(a, b) {
+                		    return inp[b] - inp[a];
+			    }); // descending sort the output array
+            		    outp.pop(); // remove the last index (index of smallest element in output array)
+        	    }
+    	    }
+    	    return outp;
     }
 	    
 
@@ -192,7 +217,7 @@
     }
   
 
-function sketchpad_touchMove(e) { 
+     function sketchpad_touchMove(e) { 
         // Update the touch co-ordinates
         getTouchPos(e);
 
@@ -205,6 +230,26 @@ function sketchpad_touchMove(e) {
         event.preventDefault();
     }
 
+    async function loadClassNames(){
+	    loc = 'model/mini_classes.txt'
+	    
+	    await $.ajax({
+		    url: loc,
+		    dataTpe: 'text',
+	    }).done(success);
+    }
+	    
+    //load the class names
+    function success(data){
+	    const listNames = data.split(/\n/);
+	    
+	    for(var i = 0; i < listNames.length - 1;  i++){
+		    let symbol = listNames[i];
+		    classNames[i] = symbol;
+	    }
+    }
+		    
+
    
     // Set-up the canvas and add our event handlers after the page has loaded
     function init() {
@@ -216,7 +261,13 @@ function sketchpad_touchMove(e) {
             ctx = canvas.getContext('2d');
 	    
 	//Load the model into browser
-	//model = await tf.loadModel('model/model.json')
+	model = await tf.loadModel('model/model.json');
+	    
+	//warm up
+	model.predict(tf.zeros([1, 28, 28, 1]));
+	    
+	//load the class names
+	await loadClassNames();
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
