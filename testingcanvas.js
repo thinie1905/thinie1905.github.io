@@ -16,12 +16,6 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 	coords = [];
     }
-
-    function setResult(top5) {
-	    
-	    let desc = document.getElementById('desc1');
-	    desc.innerHTML = top5[0];
-    }
 	
     //4. Preprocess data
     function preprocess(imgData) {
@@ -90,13 +84,19 @@
         	//get the prediction 
         	const pred = model.predict(preprocess(imgData)).dataSync();
 
-        	//find the top 5 predictions 
+        	//find the top 3 predictions 
         	const indices = findIndicesOfMax(pred, 3);
         	const names = getClassNames(indices)
 		
 		//set result
 		setResult(names);
     	}
+    }
+
+    function setResult(top5) {
+	    
+	    let desc = document.getElementById('desc1');
+	    desc.innerHTML = top5[0];
     }
 
     //get class name
@@ -262,6 +262,7 @@
 	    
 	//Load the model into browser
 	model = await tf.loadModel('model/model.json');
+	document.getElementById('status').innerHTML = 'Model Loaded';
 	    
 	//warm up
 	model.predict(tf.zeros([1, 28, 28, 1]));
