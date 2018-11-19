@@ -264,7 +264,7 @@
             ctx = canvas.getContext('2d');
 	    
 	//Load the model into browser
-	//model = await tf.loadModel('model/model.json');
+	model = await tf.loadModel('model/model.json');
 	document.getElementById('status').innerHTML = 'Model Loaded';
 	    
 	//warm up
