@@ -266,10 +266,10 @@
 	document.getElementById('status').innerHTML = 'Model Loaded';
 	    
 	//warm up
-	model.predict(tf.zeros([1, 28, 28, 1]));
+	//model.predict(tf.zeros([1, 28, 28, 1]));
 	    
 	//load the class names
-	await loadClassNames();
+	//await loadClassNames();
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
