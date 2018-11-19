@@ -169,7 +169,7 @@
         } 
      }
 
-     function recordCoor(event){
+     /*function recordCoor(event){
 	     var pointer = ctx.getPointer(event.e);
 	     var posX = pointer.x;
 	     var posY = pointer.y;
@@ -177,7 +177,7 @@
 	     if (posX >= 0 && posY >= 0 && mouseDown==1) {
 		     coords.push(pointer);
 	     }
-     }
+     }*/
 
     // Get the touch position relative to the top-left of the canvas
     // When we get the raw values of pageX and pageY below, they take into account the scrolling on the page
