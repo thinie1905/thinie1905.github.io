@@ -145,7 +145,7 @@
     function sketchpad_mouseMove(e) { 
         // Update the mouse co-ordinates when moved
         getMousePos(e);
-	recordCoor(e);
+	//recordCoor(e);
 
 		//Draw line stroke
 		if(mouseDown==1){
