@@ -155,9 +155,6 @@
 
     // Get the current mouse position during mousemove
     function getMousePos(e) {
-        var pointer = ctx.getPointer(event.e);
-	var posX = pointer.x;
-	var posY = pointer.y;
 	    
 	if (!e)
             var e = event;
@@ -170,6 +167,10 @@
             mouseX = e.layerX;
             mouseY = e.layerY;
         }
+	 
+	var pointer = ctx.getPointer(event.e);
+	var posX = pointer.x;
+	var posY = pointer.y;    
 	    
     	if (posX >= 0 && posY >= 0 && mouseDown==1) {
         	coords.push(pointer);
