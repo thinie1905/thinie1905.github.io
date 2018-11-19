@@ -145,6 +145,7 @@
     function sketchpad_mouseMove(e) { 
         // Update the mouse co-ordinates when moved
         getMousePos(e);
+	recordCoor(e);
 
 		//Draw line stroke
 		if(mouseDown==1){
@@ -165,20 +166,17 @@
         else if (e.layerX) {
             mouseX = e.layerX;
             mouseY = e.layerY;
-        }
-	
-	var pointer = {
-		x: 0,
-		y: 0
-	};    
-	    
-	pointer.x = mouseX;
-	pointer.y = mouseY;
-	    
-    	if (mouseX >= 0 && mouseY >= 0 && mouseDown==1) {
-        	coords.push(pointer);
-    	}    
-	    
+        } 
+     }
+
+     function recordCoor(event){
+	     var pointer = ctx.getPointer(event.e);
+	     var posX = pointer.x;
+	     var posY = pointer.y;
+	     
+	     if (posX >= 0 && posY >= 0 && mouseDown==1) {
+		     coords.push(pointer);
+	     }
      }
 
     // Get the touch position relative to the top-left of the canvas
@@ -268,10 +266,10 @@
 	document.getElementById('status').innerHTML = 'Model Loaded';
 	    
 	//warm up
-	//model.predict(tf.zeros([1, 28, 28, 1]));
+	model.predict(tf.zeros([1, 28, 28, 1]));
 	    
 	//load the class names
-	//await loadClassNames();
+	await loadClassNames();
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
