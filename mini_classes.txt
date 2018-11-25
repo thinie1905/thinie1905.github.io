@@ -1,0 +1,15 @@
+arm
+ear
+eye
+face
+finger
+foot
+hand
+knee
+leg
+mouth
+nose
+pants
+smiley_face
+
+
