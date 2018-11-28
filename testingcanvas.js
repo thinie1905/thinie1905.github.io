@@ -250,14 +250,14 @@
 	    }
     }
 
-    async function start(){
-	    document.getElementById('status').innerHTML = 'Not yet';
-	    
+    async function start(){	    
 	//Load the model into browser
 	model = await tf.loadModel('model1/model.json');
 	    
 	//warm up
 	model.predict(tf.zeros([1, 28, 28, 1]));
+	    
+	document.getElementById('status').innerHTML = 'Dapat load model?';
 	 
 	//load the class names
 	await loadClassNames();
