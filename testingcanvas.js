@@ -154,15 +154,15 @@
     }
 
     // Get the current mouse position during mousemove
-    function getMousePos(event) {	    
-	if (!event)
-            var e = event;
+    function getMousePos(ev) {	    
+	if (!ev)
+            var ev = event;
 
-        if (event.offsetX) {
+        if (ev.offsetX) {
             mouseX = e.offsetX;
             mouseY = e.offsetY;
         }
-        else if (event.layerX) {
+        else if (ev.layerX) {
             mouseX = e.layerX;
             mouseY = e.layerY;
         } 
@@ -278,7 +278,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded 2';
+	document.getElementById('status').innerHTML = 'Model Loaded 3';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
