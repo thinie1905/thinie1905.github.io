@@ -258,9 +258,6 @@
 	model.predict(tf.zeros([1, 28, 28, 1]));
 	    
 	document.getElementById('status').innerHTML = 'Dapat load model?';
-	 
-	//load the class names
-	await loadClassNames();
 	    
 	//start
 	init();
