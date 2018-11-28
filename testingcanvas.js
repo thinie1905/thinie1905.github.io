@@ -151,20 +151,18 @@
 			ctx.lineTo(mouseX, mouseY);
 			ctx.stroke();
 		}
-	    
-	 recordCoor(e);
     }
 
     // Get the current mouse position during mousemove
-    function getMousePos(e) {	    
-	if (!e)
+    function getMousePos(event) {	    
+	if (!event)
             var e = event;
 
-        if (e.offsetX) {
+        if (event.offsetX) {
             mouseX = e.offsetX;
             mouseY = e.offsetY;
         }
-        else if (e.layerX) {
+        else if (event.layerX) {
             mouseX = e.layerX;
             mouseY = e.layerY;
         } 
@@ -280,7 +278,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded 1';
+	document.getElementById('status').innerHTML = 'Model Loaded 2';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
