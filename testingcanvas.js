@@ -145,7 +145,7 @@
     function sketchpad_mouseMove(e) { 
         // Update the mouse co-ordinates when moved
         getMousePos(e);
-	//recordCoor(e);
+	recordCoor(e);
 
 		//Draw line stroke
 		if(mouseDown==1){
@@ -177,6 +177,8 @@
 	     if (posX >= 0 && posY >= 0 && mouseDown==1) {
 		     coords.push(pointer);
 	     }
+	     
+	     document.getElementById('status').innerHTML = 'Recorded?';
      }
 
     // Get the touch position relative to the top-left of the canvas
@@ -257,7 +259,7 @@
 	//warm up
 	model.predict(tf.zeros([1, 28, 28, 1]));
 	    
-	document.getElementById('status').innerHTML = 'Dapat load model?';
+	document.getElementById('status').innerHTML = 'load model?';
 	    
 	//start
 	init();
