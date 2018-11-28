@@ -145,7 +145,7 @@
     function sketchpad_mouseMove(e) { 
         // Update the mouse co-ordinates when moved
         getMousePos(e);
-	recordCoor(e);
+	//recordCoor(e);
 
 		//Draw line stroke
 		if(mouseDown==1){
@@ -232,7 +232,7 @@
     }
 
     async function loadClassNames(){
-	    loc = 'model/mini_classes.txt'
+	    loc = 'model1/class_names.txt'
 	    
 	    await $.ajax({
 		    url: loc,
@@ -252,7 +252,7 @@
 
     async function start(){
 	//Load the model into browser
-	model = await tf.loadModel('model/model.json');
+	model = await tf.loadModel('model1/model.json');
 	    
 	//warm up
 	model.predict(tf.zeros([1, 28, 28, 1]));
