@@ -166,6 +166,8 @@
             mouseX = e.layerX;
             mouseY = e.layerY;
         } 
+	    
+	    document.getElementById('status').innerHTML = 'mouseX = ' + mouseX;
      }
 
      function recordCoor(event){
@@ -278,7 +280,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded 3';
+	document.getElementById('status').innerHTML = 'Model Loaded 1';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
