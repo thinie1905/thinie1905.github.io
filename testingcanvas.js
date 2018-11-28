@@ -154,15 +154,15 @@
     }
 
     // Get the current mouse position during mousemove
-    function getMousePos(ev) {	    
-	if (!ev)
-            var ev = event;
+    function getMousePos(e) {	    
+	if (!e)
+            var e = event;
 
-        if (ev.offsetX) {
+        if (e.offsetX) {
             mouseX = e.offsetX;
             mouseY = e.offsetY;
         }
-        else if (ev.layerX) {
+        else if (e.layerX) {
             mouseX = e.layerX;
             mouseY = e.layerY;
         } 
