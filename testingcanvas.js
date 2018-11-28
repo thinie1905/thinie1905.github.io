@@ -251,6 +251,8 @@
     }
 
     async function start(){
+	    document.getElementById('status').innerHTML = 'Not yet';
+	    
 	//Load the model into browser
 	model = await tf.loadModel('model1/model.json');
 	    
