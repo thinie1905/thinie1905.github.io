@@ -145,7 +145,7 @@
     function sketchpad_mouseMove(e) { 
         // Update the mouse co-ordinates when moved
         getMousePos(e);
-	//recordCoor(e);
+	recordCoor(e);
 
 		//Draw line stroke
 		if(mouseDown==1){
@@ -169,7 +169,7 @@
         } 
      }
 
-     /*function recordCoor(event){
+     function recordCoor(event){
 	     var pointer = ctx.getPointer(event.e);
 	     var posX = pointer.x;
 	     var posY = pointer.y;
@@ -177,7 +177,7 @@
 	     if (posX >= 0 && posY >= 0 && mouseDown==1) {
 		     coords.push(pointer);
 	     }
-     }*/
+     }
 
     // Get the touch position relative to the top-left of the canvas
     // When we get the raw values of pageX and pageY below, they take into account the scrolling on the page
@@ -249,7 +249,24 @@
 		    classNames[i] = symbol;
 	    }
     }
-		    
+
+    async function start(){
+	//Load the model into browser
+	model = await tf.loadModel('model/model.json');
+	    
+	//warm up
+	model.predict(tf.zeros([1, 28, 28, 1]));
+	 
+	//load the class names
+	await loadClassNames();
+	    
+	//start
+	init();
+	    
+	//load name
+	await loadClassNames();
+    }  
+	 
 
    
     // Set-up the canvas and add our event handlers after the page has loaded
@@ -261,15 +278,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	//Load the model into browser
-	//model = await tf.loadModel('model/model.json');
 	document.getElementById('status').innerHTML = 'Model Loaded';
-	    
-	//warm up
-	//model.predict(tf.zeros([1, 28, 28, 1]));
-	    
-	//load the class names
-	//await loadClassNames();
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
