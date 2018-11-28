@@ -145,13 +145,14 @@
     function sketchpad_mouseMove(e) { 
         // Update the mouse co-ordinates when moved
         getMousePos(e);
-	recordCoor(e);
 
 		//Draw line stroke
 		if(mouseDown==1){
 			ctx.lineTo(mouseX, mouseY);
 			ctx.stroke();
 		}
+	    
+	 recordCoor(e);
     }
 
     // Get the current mouse position during mousemove
@@ -171,14 +172,14 @@
 
      function recordCoor(event){
 	     var pointer = ctx.getPointer(event.e);
+	     document.getElementById('status').innerHTML = 'Recorded?';
+	     
 	     var posX = pointer.x;
 	     var posY = pointer.y;
 	     
 	     if (posX >= 0 && posY >= 0 && mouseDown==1) {
 		     coords.push(pointer);
 	     }
-	     
-	     document.getElementById('status').innerHTML = 'Recorded?';
      }
 
     // Get the touch position relative to the top-left of the canvas
