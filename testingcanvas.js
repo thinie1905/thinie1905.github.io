@@ -144,21 +144,21 @@
 
     // Keep track of the mouse position and draw a dot if mouse button is currently pressed
     function sketchpad_mouseMove(e) { 
-        // Update the mouse co-ordinates when moved
-	var pointer = {
-		posX: 0,
-		posY: 0
-	};
-		
+        // Update the mouse co-ordinates when moved		
         getMousePos(e);
 
 		//Draw line stroke
 		if(mouseDown==1 && mouseX >=0 && mouseY >=0){
+			var pointer = {
+				posX: 0,
+				posY: 0
+			};
+			
 			pointer.posX = mouseX;
 			pointer.posY = mouseY;
 						
 		     	coords.push(pointer);
-			document.getElementById('status').innerHTML = 'mouseY = ' + coords[f].posY;
+			document.getElementById('status').innerHTML = 'mouseX = ' + coords[f].posX;
 			f++;
 	     		
 			ctx.lineTo(mouseX, mouseY);
@@ -294,7 +294,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded 6';
+	document.getElementById('status').innerHTML = 'Model Loaded 3';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
