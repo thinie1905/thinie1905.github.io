@@ -152,10 +152,7 @@
         getMousePos(e);
 
 		//Draw line stroke
-		if(mouseDown==1){	
-			ctx.lineTo(mouseX, mouseY);
-			ctx.stroke();
-			
+		if(mouseDown==1){
 			pointer.posX = mouseX;
 			pointer.posY = mouseY;
 			
@@ -163,6 +160,9 @@
 				coords.push(pointer);
 				document.getElementById('status').innerHTML = 'Pointer recorded';
 			}
+			
+			ctx.lineTo(mouseX, mouseY);
+			ctx.stroke();
 		
 		}
     }
@@ -294,7 +294,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded 5';
+	document.getElementById('status').innerHTML = 'Model Loaded 6';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
