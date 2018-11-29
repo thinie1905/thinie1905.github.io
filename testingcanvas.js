@@ -41,10 +41,8 @@
     function getMinBox(){
 	    document.getElementById('status').innerHTML = 'masuk getMinBox';
 	
-	    var coorX = coords.map(function(p) {return p.x});
-   	    var coorY = coords.map(function(p) {return p.y});
-	    
-	    document.getElementById('status').innerHTML = 'dapat mapkan coords and simpan dlm new var array';
+	    var coorX = coords.map(function(p) {return p.posX});
+   	    var coorY = coords.map(function(p) {return p.posY});
    
 	    //find top left corner 
    	    var min_coords = {
@@ -310,7 +308,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded B';
+	document.getElementById('status').innerHTML = 'Model Loaded C';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
