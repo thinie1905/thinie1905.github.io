@@ -154,7 +154,8 @@
 		//Draw line stroke
 		if(mouseDown==1){
 			pointer.posX = mouseX;
-			document.getElementById('status').innerHTML = 'mouseX = ' + pointer.posX;
+			pointer.posY = mouseY;
+			document.getElementById('status').innerHTML = 'mouseY = ' + pointer.posY;
 			
 			ctx.lineTo(mouseX, mouseY);
 			ctx.stroke();
@@ -289,7 +290,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded 3';
+	document.getElementById('status').innerHTML = 'Model Loaded 4';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
