@@ -148,10 +148,24 @@
 
 		//Draw line stroke
 		if(mouseDown==1){
+			recordCoor(e);
+			
 			ctx.lineTo(mouseX, mouseY);
 			ctx.stroke();
 		}
     }
+
+     function recordCoor(event){
+	     var pointer = ctx.getPointer(event.e);
+	     document.getElementById('status').innerHTML = 'Recorded?';
+	     
+	     var posX = pointer.x;
+	     var posY = pointer.y;
+	     
+	     if (posX >= 0 && posY >= 0 && mouseDown==1) {
+		     coords.push(pointer);
+	     }
+     }
 
     // Get the current mouse position during mousemove
     function getMousePos(e) {	    
@@ -167,19 +181,7 @@
             mouseY = e.layerY;
         } 
 	    
-	    document.getElementById('status').innerHTML = 'mouseX = ' + mouseX;
-     }
-
-     function recordCoor(event){
-	     var pointer = ctx.getPointer(event.e);
-	     document.getElementById('status').innerHTML = 'Recorded?';
-	     
-	     var posX = pointer.x;
-	     var posY = pointer.y;
-	     
-	     if (posX >= 0 && posY >= 0 && mouseDown==1) {
-		     coords.push(pointer);
-	     }
+	    //document.getElementById('status').innerHTML = 'mouseX = ' + mouseX;
      }
 
     // Get the touch position relative to the top-left of the canvas
@@ -280,7 +282,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded 1';
+	document.getElementById('status').innerHTML = 'Model Loaded 2';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
