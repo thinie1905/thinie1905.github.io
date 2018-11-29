@@ -72,7 +72,11 @@
 
 	    //calculate the dpi of the current window (stretch crop of the canvas) 
 	    const dpi = window.devicePixelRatio;
-	    document.getElementById('status').innerHTML = 'Lepas dpi'; 
+	    
+	    document.getElementById('res1').innerHTML = mbb.min.x;
+	    document.getElementById('res2').innerHTML = (mbb.max.x - mbb.min.x);
+	    
+	    document.getElementById('status').innerHTML = 'Lepas dpi dan display'; 
 
 	    //extract the image data 
 	    const imgData = ctx.getImageData(mbb.min.x, mbb.min.y,
@@ -306,7 +310,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded E';
+	document.getElementById('status').innerHTML = 'Model Loaded A';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
