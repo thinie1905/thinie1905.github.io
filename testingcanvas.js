@@ -77,14 +77,17 @@
 
     //1. Get prediction
     function getFrame() {
-	document.getElementById('status').innerHTML = 'Masuk getFrame()';    
-	    
+	   
     	if (coords.length >= 2) { //at least there is 2 coordinates recorded
+		document.getElementById('status').innerHTML = 'Masuk if coords.length tu';  
+		
         	//get the image data from the canvas 
         	const imgData = getImageData();
+		document.getElementById('status').innerHTML = 'Lepas getImageData()'; 
 
         	//get the prediction 
         	const pred = model.predict(preprocess(imgData)).dataSync();
+		document.getElementById('status').innerHTML = 'Dah lepas model.predict'; 
 
         	//find the top 3 predictions 
         	const indices = findIndicesOfMax(pred, 3);
@@ -97,6 +100,8 @@
     }
 
     function setResult(top3, probs) {
+	    document.getElementById('status').innerHTML = 'Nak display result'; 
+	    
 	    document.getElementById('desc1').innerHTML = top3[0];
 	    document.getElementById('res1').innerHTML = Math.round(probs[0] * 100);
     }
@@ -294,7 +299,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded B';
+	document.getElementById('status').innerHTML = 'Model Loaded C';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
