@@ -63,14 +63,14 @@
 
     //2. Get current image data
     function getImageData() {
-	    //the minimum boudning box around the current drawing
+	    // the minimum bounding box around the current drawing
 	    const mbb = getMinBox();
 
 	    //calculate the dpi of the current window (stretch crop of the canvas) 
 	    const dpi = window.devicePixelRatio;
 
 	    //extract the image data 
-	    const imgData = canvas.contextContainer.getImageData(mbb.min.x * dpi, mbb.min.y * dpi,
+	    const imgData = ctx.getImageData(mbb.min.x * dpi, mbb.min.y * dpi,
 						       (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
 	    return imgData;
     }	
@@ -78,7 +78,6 @@
     //1. Get prediction
     function getFrame() {
     	if (coords.length >= 2) { //at least there is 2 coordinates recorded
-
         	//get the image data from the canvas 
         	const imgData = getImageData();
 
@@ -87,17 +86,17 @@
 
         	//find the top 3 predictions 
         	const indices = findIndicesOfMax(pred, 3);
-        	const names = getClassNames(indices)
+		const probs = findTopValues(pred, 5);
+        	const names = getClassNames(indices);
 		
 		//set result
-		setResult(names);
+		setResult(names, probs);
     	}
     }
 
-    function setResult(top5) {
-	    
-	    let desc = document.getElementById('desc1');
-	    desc.innerHTML = top5[0];
+    function setResult(top3, probs) {
+	    document.getElementById('desc1').innerHTML = top3[0];
+	    document.getElementById('res1').innerHTML = Math.round(probs[0] * 100);
     }
 
     //get class name
@@ -125,7 +124,17 @@
     	    }
     	    return outp;
     }
-	    
+	
+    function findTopValues(inp, count) {
+    	var outp = [];
+    	let indices = findIndicesOfMax(inp, count)
+    
+	// show 5 greatest scores
+    	for (var i = 0; i < indices.length; i++)
+        	outp[i] = inp[indices[i]]
+    	return outp
+    }
+
 
 
     // Keep track of the mouse button being pressed and draw a dot at current location
@@ -166,18 +175,6 @@
 		
 		}
     }
-
-     function recordCoor(event){
-	     var pointer = ctx.getPointer(event.e);
-	     document.getElementById('status').innerHTML = 'Recorded?';
-	     
-	     var posX = pointer.x;
-	     var posY = pointer.y;
-	     
-	     if (posX >= 0 && posY >= 0 && mouseDown==1) {
-		     coords.push(pointer);
-	     }
-     }
 
     // Get the current mouse position during mousemove
     function getMousePos(e) {	    
@@ -281,6 +278,7 @@
 	    
 	//load name
 	await loadClassNames();
+	document.getElementById('status').innerHTML = 'Class Name Loaded';
     }  
 	 
 
@@ -294,7 +292,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded 3';
+	document.getElementById('status').innerHTML = 'Model Loaded A';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
