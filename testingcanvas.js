@@ -75,8 +75,8 @@
 	    document.getElementById('status').innerHTML = 'Lepas dpi'; 
 
 	    //extract the image data 
-	    const imgData = ctx.getImageData(mbb.min.x * dpi, mbb.min.y * dpi,
-						       (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
+	    const imgData = ctx.getImageData(mbb.min.x, mbb.min.y,
+						       (mbb.max.x - mbb.min.x), (mbb.max.y - mbb.min.y));
 	    
 	    document.getElementById('status').innerHTML = 'Lepas kira imgData'; 
 	    return imgData;
@@ -306,7 +306,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded D';
+	document.getElementById('status').innerHTML = 'Model Loaded E';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
