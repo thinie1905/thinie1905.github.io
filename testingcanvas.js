@@ -39,8 +39,6 @@
 
     //3. get the best bounding box by finding the top left and bottom right cornders    
     function getMinBox(){
-	    document.getElementById('status').innerHTML = 'masuk getMinBox';
-	
 	    var coorX = coords.map(function(p) {return p.posX});
    	    var coorY = coords.map(function(p) {return p.posY});
    
@@ -65,22 +63,14 @@
     //2. Get current image data
     function getImageData() {
 	    // the minimum bounding box around the current drawing
-	    const mbb = getMinBox();
-	    document.getElementById('status').innerHTML = 'Lepas getMinBox'; 
+	    const mbb = getMinBox(); 
 
 	    //calculate the dpi of the current window (stretch crop of the canvas) 
 	    const dpi = window.devicePixelRatio;
-	    
-	    document.getElementById('res1').innerHTML = mbb.min.x;
-	    document.getElementById('res2').innerHTML = mbb.max.x;
-	    
-	    document.getElementById('status').innerHTML = 'Lepas dpi dan display'; 
 
 	    //extract the image data 
 	    const imgData = ctx.getImageData(mbb.min.x, mbb.min.y,
 						       (mbb.max.x - mbb.min.x), (mbb.max.y - mbb.min.y));
-	    
-	    document.getElementById('status').innerHTML = 'Lepas kira imgData'; 
 	    return imgData;
     }	
 
@@ -88,15 +78,12 @@
     function getFrame() {
 	   
     	if (coords.length >= 2) { //at least there is 2 coordinates recorded
-		document.getElementById('status').innerHTML = 'Masuk if coords.length tu';  
-		
+				
         	//get the image data from the canvas 
         	const imgData = getImageData();
-		document.getElementById('status').innerHTML = 'Lepas getImageData()'; 
 
         	//get the prediction 
         	const pred = model.predict(preprocess(imgData)).dataSync();
-		document.getElementById('status').innerHTML = 'Dah lepas model.predict'; 
 
         	//find the top 3 predictions 
         	const indices = findIndicesOfMax(pred, 3);
@@ -112,7 +99,7 @@
 	    document.getElementById('status').innerHTML = 'Nak display result'; 
 	    
 	    document.getElementById('desc1').innerHTML = top3[0];
-	    document.getElementById('res1').innerHTML = Math.round(probs[0] * 100);
+	    document.getElementById('res1').innerHTML = probs[0];
     }
 
     //get class name
@@ -183,8 +170,6 @@
 			pointer.posY = mouseY;
 						
 		     	coords.push(pointer);
-			document.getElementById('status').innerHTML = 'mouseX = ' + coords[f].posX;
-			f++;
 	     		
 			ctx.lineTo(mouseX, mouseY);
 			ctx.stroke();
@@ -224,13 +209,6 @@
                 var touch = e.touches[0]; // Get the information for finger #1
                 touchX=touch.pageX-touch.target.offsetLeft;
                 touchY=touch.pageY-touch.target.offsetTop;
-		    
-		/*pointer.x = touchX;
-		pointer.y = touchY;
-		
-		if (touchX >= 0 && touchY >= 0) {
-        		coords.push(pointer)
-   		}*/
             }
 	}   
     }
@@ -278,6 +256,10 @@
 		    let symbol = listNames[i];
 		    classNames[i] = symbol;
 	    }
+	    
+	    
+	    document.getElementById('desc2').innerHTML = classNames[1];
+	    document.getElementById('status').innerHTML = 'Class Name Loaded';
     }
 
     async function start(){	    
@@ -294,7 +276,6 @@
 	    
 	//load name
 	await loadClassNames();
-	document.getElementById('status').innerHTML = 'Class Name Loaded';
     }  
 	 
 
@@ -308,7 +289,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded C';
+	document.getElementById('status').innerHTML = 'Model Loaded D';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
