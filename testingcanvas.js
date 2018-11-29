@@ -39,9 +39,12 @@
 
     //3. get the best bounding box by finding the top left and bottom right cornders    
     function getMinBox(){
+	    document.getElementById('status').innerHTML = 'masuk getMinBox';
 	
 	    var coorX = coords.map(function(p) {return p.x});
    	    var coorY = coords.map(function(p) {return p.y});
+	    
+	    document.getElementById('status').innerHTML = 'dapat mapkan coords and simpan dlm new var array';
    
 	    //find top left corner 
    	    var min_coords = {
@@ -65,13 +68,17 @@
     function getImageData() {
 	    // the minimum bounding box around the current drawing
 	    const mbb = getMinBox();
+	    document.getElementById('status').innerHTML = 'Lepas getMinBox'; 
 
 	    //calculate the dpi of the current window (stretch crop of the canvas) 
 	    const dpi = window.devicePixelRatio;
+	    document.getElementById('status').innerHTML = 'Lepas dpi'; 
 
 	    //extract the image data 
 	    const imgData = ctx.getImageData(mbb.min.x * dpi, mbb.min.y * dpi,
 						       (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
+	    
+	    document.getElementById('status').innerHTML = 'Lepas kira imgData'; 
 	    return imgData;
     }	
 
@@ -299,7 +306,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded C';
+	document.getElementById('status').innerHTML = 'Model Loaded D';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
