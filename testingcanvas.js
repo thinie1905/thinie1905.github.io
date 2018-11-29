@@ -156,14 +156,11 @@
 		if(mouseDown==1 && mouseX >=0 && mouseY >=0){
 			pointer.posX = mouseX;
 			pointer.posY = mouseY;
-			
-			document.getElementById('status').innerHTML = 'mouseX = ' + pointer.posX;
-			
-			/*if (posX >= 0 && posY >= 0) {
-		     		coords.push(pointer);
-				f++;
-	     		}*/
-			
+						
+		     	coords.push(pointer);
+			document.getElementById('status').innerHTML = 'mouseY = ' + coords[f].posY;
+			f++;
+	     		
 			ctx.lineTo(mouseX, mouseY);
 			ctx.stroke();
 		
@@ -297,7 +294,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded 9';
+	document.getElementById('status').innerHTML = 'Model Loaded 6';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
