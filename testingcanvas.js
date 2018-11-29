@@ -77,6 +77,8 @@
 
     //1. Get prediction
     function getFrame() {
+	document.getElementById('status').innerHTML = 'Masuk getFrame()';    
+	    
     	if (coords.length >= 2) { //at least there is 2 coordinates recorded
         	//get the image data from the canvas 
         	const imgData = getImageData();
@@ -292,7 +294,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded A';
+	document.getElementById('status').innerHTML = 'Model Loaded B';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
