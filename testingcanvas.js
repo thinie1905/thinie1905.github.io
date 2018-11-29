@@ -153,7 +153,8 @@
 
 		//Draw line stroke
 		if(mouseDown==1){
-			document.getElementById('status').innerHTML = 'mouseY = ' + mouseY;
+			pointer.posX = mouseX;
+			document.getElementById('status').innerHTML = 'mouseX = ' + pointer.posX;
 			
 			ctx.lineTo(mouseX, mouseY);
 			ctx.stroke();
