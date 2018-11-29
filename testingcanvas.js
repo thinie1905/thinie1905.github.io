@@ -74,7 +74,7 @@
 	    const dpi = window.devicePixelRatio;
 	    
 	    document.getElementById('res1').innerHTML = mbb.min.x;
-	    document.getElementById('res2').innerHTML = (mbb.max.x - mbb.min.x);
+	    document.getElementById('res2').innerHTML = mbb.max.x;
 	    
 	    document.getElementById('status').innerHTML = 'Lepas dpi dan display'; 
 
@@ -310,7 +310,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded A';
+	document.getElementById('status').innerHTML = 'Model Loaded B';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
