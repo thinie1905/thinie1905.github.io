@@ -144,14 +144,26 @@
     // Keep track of the mouse position and draw a dot if mouse button is currently pressed
     function sketchpad_mouseMove(e) { 
         // Update the mouse co-ordinates when moved
+	var pointer = {
+		posX: 0,
+		posY: 0
+	};
+		
         getMousePos(e);
 
 		//Draw line stroke
-		if(mouseDown==1){
-			recordCoor(e);
-			
+		if(mouseDown==1){	
 			ctx.lineTo(mouseX, mouseY);
 			ctx.stroke();
+			
+			pointer.posX = mouseX;
+			pointer.posY = mouseY;
+			
+			if (posX >= 0 && posY >= 0){
+				coords.push(pointer);
+				document.getElementById('status').innerHTML = 'Pointer recorded';
+			}
+		
 		}
     }
 
