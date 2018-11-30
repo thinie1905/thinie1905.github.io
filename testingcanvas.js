@@ -96,10 +96,10 @@
     }
 
     function setResult(top3, probs) {
-	    document.getElementById('status').innerHTML = 'Nak display result'; 
+	    document.getElementById('status').innerHTML = 'Result'; 
 	    
 	    document.getElementById('desc1').innerHTML = top3[0];
-	    document.getElementById('res1').innerHTML = probs[0];
+	    document.getElementById('res1').innerHTML = probs[0]*2;
     }
 
     //get class name
@@ -289,7 +289,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded D';
+	document.getElementById('status').innerHTML = 'Model Loaded E';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
