@@ -1,4 +1,4 @@
-    // Variables for referencing the canvas and 2dcanvas context
+   // Variables for referencing the canvas and 2dcanvas context
     var canvas, ctx;
 
     // Variables to keep track of the mouse position and left-button status 
@@ -99,7 +99,7 @@
 	    document.getElementById('status').innerHTML = 'Nak display result'; 
 	    
 	    document.getElementById('desc1').innerHTML = top3[0];
-	    document.getElementById('res1').innerHTML = Math.round((probs[0]*100)*2));
+	    document.getElementById('res1').innerHTML = probs[0];
     }
 
     //get class name
@@ -240,23 +240,22 @@
     }
 
     async function loadClassNames(){
-
 	    loc = 'model1/class_names.txt'
 	    
 	    await $.ajax({
 		    url: loc,
-		    dataType: 'text',
+		    dataTpe: 'text',
 	    }).done(success);
     }
 	    
     //load the class names
     function success(data){
-	    const lst = data.split(/\n/);
+	    const listNames = data.split(/\n/);
 	    
-	    for (var i = 0; i < lst.length - 1; i++) {
-        	    let symbol = lst[i]
-     		    classNames[i] = symbol
-   	    }
+	    for(var i = 0; i < listNames.length - 1;  i++){
+		    let symbol = listNames[i];
+		    classNames[i] = symbol;
+	    }
 	    
 	    
 	    document.getElementById('desc2').innerHTML = classNames[1];
@@ -290,7 +289,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded P';
+	document.getElementById('status').innerHTML = 'Model Loaded D';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
