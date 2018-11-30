@@ -248,7 +248,7 @@
         event.preventDefault();
     }
 
-    async fuction openFile(){
+    fuction openFile(){
 	    document.getElementById('status').innerHTML = 'dalam openFile';
 	var filePath = new XMLHttpRequest();
 	    document.getElementById('status').innerHTML = 'berjaya XMLHttpRequest';
@@ -294,11 +294,6 @@
 	    
 	//warm up
 	model.predict(tf.zeros([1, 28, 28, 1]));
-	
-	document.getElementById('status').innerHTML = 'belum masuk openFile lagi';
-	    
-	//load class name
-	await openFile();
 		    
 	//start
 	init();
@@ -311,6 +306,9 @@
    
     // Set-up the canvas and add our event handlers after the page has loaded
     function init() {
+	openFile(); // extract classnames
+	document.getElementById('status').innerHTML = 'We got it';
+	    
         // Get the specific canvas element from the HTML document
         canvas = document.getElementById('sketchpad');
 
