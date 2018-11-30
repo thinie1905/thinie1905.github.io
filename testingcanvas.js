@@ -306,7 +306,7 @@
    
     // Set-up the canvas and add our event handlers after the page has loaded
     function init() {
-	openFile(); // extract classnames
+	//openFile(); // extract classnames
 	document.getElementById('status').innerHTML = 'We got it';
 	    
         // Get the specific canvas element from the HTML document
