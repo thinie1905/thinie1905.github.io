@@ -18,6 +18,7 @@
 	coords = [];
 	document.getElementById('desc1').innerHTML = 'Na/N';
 	document.getElementById('res1').innerHTML = 'Na/N';
+	document.getElementById('status').innerHTML = 'Model Loaded A';
     }
 	
     //4. Preprocess data
