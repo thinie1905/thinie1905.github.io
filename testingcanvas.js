@@ -250,12 +250,15 @@
 
     fuction openFile(){
 	var filePath = new XMLHttpRequest();
+	    document.getElementById('status').innerHTML = 'berjaya XMLHttpRequest';
 	const eachLine;
 	filePath.open("GET", "model1/class_names.txt", true);
+	    document.getElementById('status').innerHTML = 'File dpt bukak';
 	filePath.onreadystatechange = function(){
-	if (filePath.readyState === 4 && filePath.status === 200){  //document is ready to parse and found the file
-		allData = filePath.responseText;
-		eachLine = filePath.responseText.split("\n");  //split line
+		if (filePath.readyState === 4 && filePath.status === 200){  //document is ready to parse and found the file
+			allData = filePath.responseText;
+			eachLine = filePath.responseText.split("\n");  //split line
+		}
 	}
 	document.getElementById('status').innerHTML = 'File open?';
 	filePath.send(null);
@@ -313,7 +316,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded A';
+	document.getElementById('status').innerHTML = 'Model Loaded B';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
