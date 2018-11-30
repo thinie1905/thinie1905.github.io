@@ -248,7 +248,7 @@
         event.preventDefault();
     }
 
-    fuction openFile(){
+    async fuction openFile(){
 	    document.getElementById('status').innerHTML = 'dalam openFile';
 	var filePath = new XMLHttpRequest();
 	    document.getElementById('status').innerHTML = 'berjaya XMLHttpRequest';
@@ -298,7 +298,7 @@
 	document.getElementById('status').innerHTML = 'belum masuk openFile lagi';
 	    
 	//load class name
-	openFile();
+	await openFile();
 		    
 	//start
 	init();
