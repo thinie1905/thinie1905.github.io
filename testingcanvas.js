@@ -16,6 +16,8 @@
     function clearCanvas(canvas,ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 	coords = [];
+	document.getElementById('desc1').innerHTML = 'Na/N';
+	document.getElementById('res1').innerHTML = 'Na/N';
     }
 	
     //4. Preprocess data
