@@ -244,7 +244,7 @@
 	    
 	    await $.ajax({
 		    url: loc,
-		    dataTpe: 'text',
+		    dataType: 'text',
 	    }).done(success);
     }
 	    
@@ -289,7 +289,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded D';
+	document.getElementById('status').innerHTML = 'Model Loaded P';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
