@@ -99,7 +99,7 @@
 	    document.getElementById('status').innerHTML = 'Nak display result'; 
 	    
 	    document.getElementById('desc1').innerHTML = top3[0];
-	    document.getElementById('res1').innerHTML = probs[0];
+	    document.getElementById('res1').innerHTML = Math.round((probs[0]*100)*2));
     }
 
     //get class name
