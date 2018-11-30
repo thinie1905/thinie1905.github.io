@@ -294,11 +294,12 @@
 	    
 	//warm up
 	model.predict(tf.zeros([1, 28, 28, 1]));
-	 
+	
+	document.getElementById('status').innerHTML = 'belum masuk openFile lagi';
+	    
 	//load class name
 	openFile();
-	//document.getElementById('status').innerHTML = 'class Names loaded?';
-	    
+		    
 	//start
 	init();
 	    
