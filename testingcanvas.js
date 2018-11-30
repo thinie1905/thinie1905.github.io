@@ -1,6 +1,3 @@
-    //Import node js fs module
-    //var fs = require('fs');
-
     // Variables for referencing the canvas and 2dcanvas context
     var canvas, ctx;
 
@@ -10,21 +7,15 @@
     // Variables to keep track of the touch position
     var touchX,touchY;
 
-    // For loading class names
-    var classNames = [];
-    var allData;
-
     var model;
     var coords = [];  //getting coordinate
+    var classNames = [];
+    var f = 0;
 	
     // Clear the canvas context using the canvas width and height
     function clearCanvas(canvas,ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 	coords = [];
-	document.getElementById('desc1').innerHTML = 'Na/N';
-	document.getElementById('desc2').innerHTML = 'Na/N';
-	document.getElementById('res1').innerHTML = 'Na/N';
-	document.getElementById('res2').innerHTML = 'Na/N';
     }
 	
     //4. Preprocess data
@@ -248,25 +239,6 @@
         event.preventDefault();
     }
 
-    fuction openFile(){
-	    document.getElementById('status').innerHTML = 'dalam openFile';
-	var filePath = new XMLHttpRequest();
-	    document.getElementById('status').innerHTML = 'berjaya XMLHttpRequest';
-	const eachLine;
-	filePath.open("GET", "model1/class_names.txt", true);
-	    document.getElementById('status').innerHTML = 'File dpt bukak';
-	filePath.onreadystatechange = function(){
-		if (filePath.readyState === 4 && filePath.status === 200){  //document is ready to parse and found the file
-			allData = filePath.responseText;
-			eachLine = filePath.responseText.split("\n");  //split line
-		}
-	}
-	document.getElementById('status').innerHTML = 'File open?';
-	filePath.send(null);
-		
-	success(eachLine);
-    }
-
     async function loadClassNames(){
 	    loc = 'model1/class_names.txt'
 	    
@@ -277,15 +249,17 @@
     }
 	    
     //load the class names
-    function success(){
+    function success(data){
 	    const listNames = data.split(/\n/);
 	    
 	    for(var i = 0; i < listNames.length - 1;  i++){
 		    let symbol = listNames[i];
 		    classNames[i] = symbol;
 	    }
-	   	    
+	    
+	    
 	    document.getElementById('desc2').innerHTML = classNames[1];
+	    document.getElementById('status').innerHTML = 'Class Name Loaded';
     }
 
     async function start(){	    
@@ -294,7 +268,9 @@
 	    
 	//warm up
 	model.predict(tf.zeros([1, 28, 28, 1]));
-		    
+	    
+	document.getElementById('status').innerHTML = 'load model?';
+	    
 	//start
 	init();
 	    
@@ -306,9 +282,6 @@
    
     // Set-up the canvas and add our event handlers after the page has loaded
     function init() {
-	//openFile(); // extract classnames
-	document.getElementById('status').innerHTML = 'We got it';
-	    
         // Get the specific canvas element from the HTML document
         canvas = document.getElementById('sketchpad');
 
@@ -316,7 +289,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded B';
+	document.getElementById('status').innerHTML = 'Model Loaded D';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
