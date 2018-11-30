@@ -249,6 +249,7 @@
     }
 
     fuction openFile(){
+	    document.getElementById('status').innerHTML = 'dalam openFile';
 	var filePath = new XMLHttpRequest();
 	    document.getElementById('status').innerHTML = 'berjaya XMLHttpRequest';
 	const eachLine;
