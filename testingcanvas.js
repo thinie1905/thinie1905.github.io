@@ -240,6 +240,7 @@
     }
 
     async function loadClassNames(){
+
 	    loc = 'model1/class_names.txt'
 	    
 	    await $.ajax({
@@ -250,12 +251,12 @@
 	    
     //load the class names
     function success(data){
-	    const listNames = data.split(/\n/);
+	    const lst = data.split(/\n/);
 	    
-	    for(var i = 0; i < listNames.length - 1;  i++){
-		    let symbol = listNames[i];
-		    classNames[i] = symbol;
-	    }
+	    for (var i = 0; i < lst.length - 1; i++) {
+        	    let symbol = lst[i]
+     		    classNames[i] = symbol
+   	    }
 	    
 	    
 	    document.getElementById('desc2').innerHTML = classNames[1];
