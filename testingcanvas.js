@@ -267,18 +267,18 @@
 	success(eachLine);
     }
 
-    /*async function loadClassNames(){
+    async function loadClassNames(){
 	    loc = 'model1/class_names.txt'
 	    
 	    await $.ajax({
 		    url: loc,
 		    dataTpe: 'text',
 	    }).done(success);
-    }*/
+    }
 	    
     //load the class names
-    function success(listNames){
-	    //const listNames = data.split(/\n/);
+    function success(){
+	    const listNames = data.split(/\n/);
 	    
 	    for(var i = 0; i < listNames.length - 1;  i++){
 		    let symbol = listNames[i];
@@ -299,7 +299,7 @@
 	init();
 	    
 	//load name
-	//await loadClassNames();
+	await loadClassNames();
     }  
 	 
 
