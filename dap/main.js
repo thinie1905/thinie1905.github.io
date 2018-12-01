@@ -35,12 +35,12 @@ $(function() {
 /*
 set the table of the predictions 
 */
-function setTable(top5, probs) {
+function setTable(result, probs) {
     //loop over the predictions 
-    for (var i = 0; i < top5.length; i++) {
+    for (var i = 0; i < result.length; i++) {
         let sym = document.getElementById('sym' + (i + 1))
         let prob = document.getElementById('prob' + (i + 1))
-        sym.innerHTML = top5[i]
+        sym.innerHTML = result[i]
         prob.innerHTML = Math.round(probs[i] * 100)
     }
     //create the pie 
@@ -118,9 +118,9 @@ function getFrame() {
         const pred = model.predict(preprocess(imgData)).dataSync()
 
         //find the top 5 predictions 
-        const indices = findIndicesOfMax(pred, 5)
-        const probs = findTopValues(pred, 5)
-        const names = getClassNames(indices)
+        const indices = findIndices(pred)
+        const names = getClassNames(pred, indices, 1)
+        const probs = getClassNames(pred, indices, 2)
 
         //set the table 
         setTable(names, probs)
@@ -131,11 +131,26 @@ function getFrame() {
 /*
 get the the class names 
 */
-function getClassNames(indices) {
+function getClassNames(inp, indices, choice) {
     var outp = []
-    for (var i = 0; i < indices.length; i++)
-        outp[i] = classNames[indices[i]]
-    return outp
+    var probso = []
+    var temp = ""
+    var j=0;
+    
+    for (var i = 0; i < indices.length; i++){
+        temp = classNames[indices[i]]
+        
+        if (temp == "eye" || temp == "face" || temp == "smiley_face"){
+            outp[j] = temp
+            probso[j] = inp[indices[i]]
+            j++
+        }
+    }        
+    if (choice == 1)
+        return outp
+    else if (choice == 2)
+        return probso
+        
 }
 
 /*
@@ -167,16 +182,16 @@ function success(data) {
 /*
 get indices of the top probs
 */
-function findIndicesOfMax(inp, count) {
+function findIndices(inp) {
     var outp = [];
     for (var i = 0; i < inp.length; i++) {
         outp.push(i); // add index to output array
-        if (outp.length > count) {
+        /*if (outp.length > count) {
             outp.sort(function(a, b) {
                 return inp[b] - inp[a];
             }); // descending sort the output array
             outp.pop(); // remove the last index (index of smallest element in output array)
-        }
+        }*/
     }
     return outp;
 }
@@ -238,7 +253,7 @@ allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
      
-    document.getElementById('status').innerHTML = 'Model Loaded C';
+    document.getElementById('status').innerHTML = 'Model Loaded E';
    
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
