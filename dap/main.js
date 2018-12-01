@@ -116,15 +116,11 @@ function getFrame() {
         
         //get the prediction 
         const pred = model.predict(preprocess(imgData)).dataSync()
-        
-        document.getElementById('status').innerHTML = 'belum buat semua tiga ni';
 
         //find the top 5 predictions 
         const indices = findIndices(pred)
         const names = getClassNames(pred, indices, 1)
         const probs = getClassNames(pred, indices, 2)
-        
-        document.getElementById('status').innerHTML = 'dah buat semua tiga ni';
 
         //set the table 
         setTable(names, probs)
@@ -141,6 +137,8 @@ function getClassNames(inp, indices, choice) {
     var temp = ""
     var j=0;
         
+    document.getElementById('status').innerHTML = 'ClassNames = ' + classNames[indices[0]];
+    
     for (var i = 0; i < indices.length; i++){
         temp = classNames[indices[i]]
         
@@ -257,7 +255,7 @@ allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
      
-    document.getElementById('status').innerHTML = 'Model Loaded C';
+    document.getElementById('status').innerHTML = 'Model Loaded D';
    
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
