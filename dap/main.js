@@ -1,3 +1,6 @@
+/*
+variables
+*/
 var model;
 var canvas;
 var classNames = [];
@@ -250,7 +253,7 @@ allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
      
-    document.getElementById('status').innerHTML = 'Model Loaded D';
+    document.getElementById('status').innerHTML = 'Model Loaded A';
    
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
