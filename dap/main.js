@@ -44,7 +44,7 @@ function setTable(top5, probs) {
         prob.innerHTML = Math.round(probs[i] * 100)
     }
     //create the pie 
-    createPie(".pieID.legend", ".pieID.pie");
+    //createPie(".pieID.legend", ".pieID.pie");
 
 }
 
@@ -142,9 +142,9 @@ function getClassNames(indices) {
 load the class names 
 */
 async function loadDict() {
-    if (mode == 'ar')
-        loc = 'model2/class_names_ar.txt'
-    else
+    //if (mode == 'ar')
+        //loc = 'model2/class_names_ar.txt'
+    //else
         loc = 'model2/class_names.txt'
     
     await $.ajax({
@@ -219,7 +219,7 @@ load the model
 */
 async function start(cur_mode) {
     //arabic or english
-    mode = cur_mode
+    //mode = cur_mode
     
     //load the model 
     model = await tf.loadModel('model2/model.json')
@@ -239,10 +239,10 @@ allow drawing on canvas
 */
 function allowDrawing() {
     canvas.isDrawingMode = 1;
-    if (mode == 'en')
-        document.getElementById('status').innerHTML = 'Model Loaded';
-    else
-        document.getElementById('status').innerHTML = 'تم التحميل';
+    //if (mode == 'en')
+        document.getElementById('status').innerHTML = 'Model Loaded B';
+    //else
+        //document.getElementById('status').innerHTML = 'تم التحميل';
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
     slider.oninput = function() {
