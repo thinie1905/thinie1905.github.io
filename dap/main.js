@@ -21,7 +21,7 @@ $(function() {
     canvas.renderAll();
     //setup listeners 
     canvas.on('mouse:up', function(e) {
-        getFrame();
+        //getFrame();
         mousePressed = false
     });
     canvas.on('mouse:down', function(e) {
@@ -253,7 +253,7 @@ allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
      
-    document.getElementById('status').innerHTML = 'Model Loaded E';
+    document.getElementById('status').innerHTML = 'Model Loaded D';
    
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
