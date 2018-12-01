@@ -17,7 +17,7 @@ $(function() {
     canvas.backgroundColor = '#ffffff';
     canvas.isDrawingMode = 0;
     canvas.freeDrawingBrush.color = "black";
-    canvas.freeDrawingBrush.width = 10;
+    canvas.freeDrawingBrush.width = 4;
     canvas.renderAll();
     //setup listeners 
     canvas.on('mouse:up', function(e) {
@@ -217,10 +217,8 @@ function preprocess(imgData) {
 /*
 load the model
 */
-async function start(cur_mode) {
-    //arabic or english
-    //mode = cur_mode
-    
+async function start() {
+        
     //load the model 
     model = await tf.loadModel('model2/model.json')
     
@@ -239,10 +237,9 @@ allow drawing on canvas
 */
 function allowDrawing() {
     canvas.isDrawingMode = 1;
-    //if (mode == 'en')
-        document.getElementById('status').innerHTML = 'Model Loaded B';
-    //else
-        //document.getElementById('status').innerHTML = 'تم التحميل';
+     
+    document.getElementById('status').innerHTML = 'Model Loaded C';
+   
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
     slider.oninput = function() {
