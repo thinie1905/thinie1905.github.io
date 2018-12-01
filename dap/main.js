@@ -32,11 +32,11 @@ function setTable(result, probs) {
     //loop over result of prediction
     for (var i = 0; i < result.length; i++) {
         if (k == 0 && result[i] == "hand"){
-            document.getElementById('prob1').innerHTML = Math.round(probs[i] * 100)
+            document.getElementById('prob1').innerHTML = ((probs[i] * 100) * 2).toFixed(2)
         } else if (k == 1 && result[i] == "face"){
-             document.getElementById('prob2').innerHTML = Math.round(probs[i] * 100)
+             document.getElementById('prob2').innerHTML = ((probs[i] * 100) * 2).toFixed(2)
         } else if (k == 2 && result[i] == "foot"){
-             document.getElementById('prob3').innerHTML = Math.round(probs[i] * 100)
+             document.getElementById('prob3').innerHTML = ((probs[i] * 100) * 2).toFixed(2)
         }
     }
 
@@ -124,10 +124,11 @@ function drawingResult(){
         
         if (k == 1)
             document.getElementById('drawStat').innerText = 'Draw Face'
-        else if (k == 2)
+        else if (k == 2){
             document.getElementById('drawStat').innerText = 'Draw Foot'
-        else if (k == 3)
             document.getElementById("nextButton").textContent = "Done"
+        } else if (k == 3)
+            document.getElementById("nextButton").textContent = "Result"
     }           
 }
 
