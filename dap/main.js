@@ -1,6 +1,3 @@
-/*
-variables
-*/
 var model;
 var canvas;
 var classNames = [];
@@ -113,7 +110,7 @@ function getFrame() {
 
         //get the image data from the canvas 
         const imgData = getImageData()
-        
+
         //get the prediction 
         const pred = model.predict(preprocess(imgData)).dataSync()
 
@@ -136,8 +133,6 @@ function getClassNames(inp, indices, choice) {
     var probso = []
     var temp = ""
     var j=0;
-        
-    document.getElementById('status').innerHTML = 'Class Names = ' + classNames[indices[0]];
     
     for (var i = 0; i < indices.length; i++){
         temp = classNames[indices[i]]
@@ -237,7 +232,7 @@ load the model
 async function start() {
         
     //load the model 
-    model = await tf.loadModel('model/model.json')
+    model = await tf.loadModel('model2/model.json')
     
     //warm up 
     model.predict(tf.zeros([1, 28, 28, 1]))
@@ -255,7 +250,7 @@ allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
      
-    document.getElementById('status').innerHTML = 'Model Loaded A';
+    document.getElementById('status').innerHTML = 'Model Loaded D';
    
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
