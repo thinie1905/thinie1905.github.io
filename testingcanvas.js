@@ -250,16 +250,6 @@
 		    dataTpe: 'text',
 	    }).done(success);
     }
-
-    function loadNames(){
-	    var fs = require('fs');
-	    
-	    try{
-		    var data = fs.readFileSync('model1/class_names.txt', 'utf8');
-	    }
-	    
-	    success(data);
-    }
 	    
     //load the class names
     function success(data){
@@ -302,9 +292,7 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded E';
-	
-	//loadName();
+	document.getElementById('status').innerHTML = 'Model Loaded A';
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
