@@ -32,11 +32,11 @@ function setTable(result, probs) {
     //loop over result of prediction
     for (var i = 0; i < result.length; i++) {
         if (k == 0 && result[i] == "hand"){
-            document.getElementById('prob1').innerHTML = ((probs[i] * 100) * 2).toFixed(2)
+            document.getElementById('prob1').innerHTML = ((probs[i] * 100 * 3) / 100).toFixed(1)
         } else if (k == 1 && result[i] == "face"){
-             document.getElementById('prob2').innerHTML = ((probs[i] * 100) * 2).toFixed(2)
+             document.getElementById('prob2').innerHTML = ((probs[i] * 100 * 3) / 100).toFixed(1)
         } else if (k == 2 && result[i] == "foot"){
-             document.getElementById('prob3').innerHTML = ((probs[i] * 100) * 2).toFixed(2)
+             document.getElementById('prob3').innerHTML = ((probs[i] * 100 * 3) / 100).toFixed(1)
         }
     }
 
@@ -225,7 +225,7 @@ function allowDrawing() {
     canvas.isDrawingMode = 1;
     
     document.getElementById('status').innerHTML = 'Start Drawing!';
-    document.getElementById('drawStat').innerText = 'Draw Hand 2';
+    document.getElementById('drawStat').innerText = 'Draw Hand 3';
    
     $('button').prop('disabled', false);
     /*var slider = document.getElementById('myRange');
