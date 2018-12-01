@@ -256,10 +256,10 @@ function allowDrawing() {
     document.getElementById('status').innerHTML = 'Model Loaded B';
    
     $('button').prop('disabled', false);
-    var slider = document.getElementById('myRange');
+    /*var slider = document.getElementById('myRange');
     slider.oninput = function() {
         canvas.freeDrawingBrush.width = this.value;
-    };
+    };*/
 }
 
 /*
