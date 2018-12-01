@@ -137,7 +137,7 @@ function getClassNames(inp, indices, choice) {
     var temp = ""
     var j=0;
         
-    document.getElementById('status').innerHTML = 'ClassNames = ' + classNames[indices[0]];
+    document.getElementById('status').innerHTML = 'Prediction Score = ' + inp[indices[0]];
     
     for (var i = 0; i < indices.length; i++){
         temp = classNames[indices[i]]
@@ -255,7 +255,7 @@ allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
      
-    document.getElementById('status').innerHTML = 'Model Loaded D';
+    document.getElementById('status').innerHTML = 'Model Loaded E';
    
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
