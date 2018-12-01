@@ -1,17 +1,12 @@
-/*
-variables
-*/
 var model;
 var canvas;
 var classNames = [];
 var canvas;
 var coords = [];
 var mousePressed = false;
-var mode;
+var k = 0;
 
-/*
-prepare the drawing canvas 
-*/
+//prepare the drawing canvas 
 $(function() {
     canvas = window._canvas = new fabric.Canvas('canvas');
     canvas.backgroundColor = '#ffffff';
@@ -21,7 +16,6 @@ $(function() {
     canvas.renderAll();
     //setup listeners 
     canvas.on('mouse:up', function(e) {
-        //getFrame();
         mousePressed = false
     });
     canvas.on('mouse:down', function(e) {
@@ -32,25 +26,23 @@ $(function() {
     });
 })
 
-/*
-set the table of the predictions 
-*/
+//set the table of the predictions 
 function setTable(result, probs) {
-    //loop over the predictions 
+      
+    //loop over result of prediction
     for (var i = 0; i < result.length; i++) {
-        let sym = document.getElementById('sym' + (i + 1))
-        let prob = document.getElementById('prob' + (i + 1))
-        sym.innerHTML = result[i]
-        prob.innerHTML = Math.round(probs[i] * 100)
+        if (k == 0 && result[i] == "hand"){
+            document.getElementById('prob1').innerHTML = Math.round(probs[i] * 100)
+        } else if (k == 1 && result[i] == "face"){
+             document.getElementById('prob2').innerHTML = Math.round(probs[i] * 100)
+        } else if (k == 2 && result[i] == "foot"){
+             document.getElementById('prob3').innerHTML = Math.round(probs[i] * 100)
+        }
     }
-    //create the pie 
-    //createPie(".pieID.legend", ".pieID.pie");
 
 }
 
-/*
-record the current drawing coordinates
-*/
+//record the current drawing coordinates
 function recordCoor(event) {
     var pointer = canvas.getPointer(event.e);
     var posX = pointer.x;
@@ -90,9 +82,7 @@ function getMinBox() {
     }
 }
 
-/*
-get the current image data 
-*/
+//get the current image data 
 function getImageData() {
         //get the minimum bounding box around the drawing 
         const mbb = getMinBox()
@@ -104,9 +94,7 @@ function getImageData() {
         return imgData
     }
 
-/*
-get the prediction 
-*/
+//get the prediction 
 function getFrame() {
     //make sure we have at least two recorded coordinates 
     if (coords.length >= 2) {
@@ -128,9 +116,22 @@ function getFrame() {
 
 }
 
-/*
-get the the class names 
-*/
+function drawingResult(){
+    if (k < 3){
+        getFrame()
+        k++
+        erase()
+        
+        if (k == 1)
+            document.getElementById('drawStat').innerHTML = 'Draw Face'
+        else if (k == 2)
+            document.getElementById('drawStat').innerHTML = 'Draw Foot';
+        else if (k == 3)
+            document.getElementById("nextButton").textContent = "Done"
+    }           
+}
+
+//get the the class names 
 function getClassNames(inp, indices, choice) {
     var outp = []
     var probso = []
@@ -140,7 +141,7 @@ function getClassNames(inp, indices, choice) {
     for (var i = 0; i < indices.length; i++){
         temp = classNames[indices[i]]
         
-        if (temp == "eye" || temp == "face" || temp == "smiley_face"){
+        if (temp == "hand" || temp == "face" || temp == "foot"){
             outp[j] = temp
             probso[j] = inp[indices[i]]
             j++
@@ -153,14 +154,10 @@ function getClassNames(inp, indices, choice) {
         
 }
 
-/*
-load the class names 
-*/
-async function loadDict() {
-    //if (mode == 'ar')
-        //loc = 'model2/class_names_ar.txt'
-    //else
-        loc = 'model/class_names.txt'
+//load the class names 
+async function loadClassNames() {
+ 
+    loc = 'model/class_names.txt'
     
     await $.ajax({
         url: loc,
@@ -168,9 +165,7 @@ async function loadDict() {
     }).done(success);
 }
 
-/*
-load the class names
-*/
+//load the class names
 function success(data) {
     const lst = data.split(/\n/)
     for (var i = 0; i < lst.length - 1; i++) {
@@ -179,38 +174,17 @@ function success(data) {
     }
 }
 
-/*
-get indices of the top probs
-*/
+//get indices of the top probs
 function findIndices(inp) {
     var outp = [];
     for (var i = 0; i < inp.length; i++) {
         outp.push(i); // add index to output array
-        /*if (outp.length > count) {
-            outp.sort(function(a, b) {
-                return inp[b] - inp[a];
-            }); // descending sort the output array
-            outp.pop(); // remove the last index (index of smallest element in output array)
-        }*/
     }
     return outp;
 }
 
-/*
-find the top 5 predictions
-*/
-function findTopValues(inp, count) {
-    var outp = [];
-    let indices = findIndicesOfMax(inp, count)
-    // show 5 greatest scores
-    for (var i = 0; i < indices.length; i++)
-        outp[i] = inp[indices[i]]
-    return outp
-}
 
-/*
-preprocess the data
-*/
+//preprocess the data
 function preprocess(imgData) {
     return tf.tidy(() => {
         //convert to a tensor 
@@ -229,9 +203,7 @@ function preprocess(imgData) {
     })
 }
 
-/*
-load the model
-*/
+//load the model
 async function start() {
         
     //load the model 
@@ -244,27 +216,34 @@ async function start() {
     allowDrawing()
     
     //load the class names
-    await loadDict()
+    await loadClassNames()
 }
 
-/*
-allow drawing on canvas
-*/
+//allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
      
-    document.getElementById('status').innerHTML = 'Model Loaded B';
+    document.getElementById('status').innerHTML = 'Start Drawing!';
+    document.getElementById('drawStat').innerHTML = 'Draw Hand';
    
     $('button').prop('disabled', false);
-    var slider = document.getElementById('myRange');
+    /*var slider = document.getElementById('myRange');
     slider.oninput = function() {
         canvas.freeDrawingBrush.width = this.value;
-    };
+    };*/
 }
 
-/*
-clear the canvs 
-*/
+function startAgain(){
+    canvas.clear();
+    canvas.backgroundColor = '#ffffff';
+    coords = [];
+    k = 0;
+    
+     for (var i = 0; i < 3; i++) 
+        document.getElementById('prob' + (i + 1)).innerHTML = ""
+}
+
+//clear the canvas 
 function erase() {
     canvas.clear();
     canvas.backgroundColor = '#ffffff';
