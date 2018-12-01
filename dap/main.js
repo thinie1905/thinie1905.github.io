@@ -114,8 +114,12 @@ function getFrame() {
         //get the image data from the canvas 
         const imgData = getImageData()
 
+        document.getElementById('status').innerHTML = 'Model x dpt predict';
+        
         //get the prediction 
         const pred = model.predict(preprocess(imgData)).dataSync()
+        
+        document.getElementById('status').innerHTML = 'Model dah predict';
 
         //find the top 5 predictions 
         const indices = findIndices(pred)
@@ -253,7 +257,7 @@ allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
      
-    document.getElementById('status').innerHTML = 'Model Loaded A';
+    document.getElementById('status').innerHTML = 'Model Loaded B';
    
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
