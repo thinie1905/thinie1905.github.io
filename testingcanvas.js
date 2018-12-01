@@ -288,7 +288,7 @@
 	init();
 	    
 	//load name
-	//await loadClassNames();
+	await loadClassNames();
     }  
 	 
 
@@ -302,9 +302,9 @@
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
 	    
-	document.getElementById('status').innerHTML = 'Model Loaded B';
+	document.getElementById('status').innerHTML = 'Model Loaded E';
 	
-	loadName();
+	//loadName();
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
