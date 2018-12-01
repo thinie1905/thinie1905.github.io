@@ -4,7 +4,7 @@ var classNames = [];
 var canvas;
 var coords = [];
 var mousePressed = false;
-var k = 0;
+var k;
 
 //prepare the drawing canvas 
 $(function() {
@@ -31,11 +31,11 @@ function setTable(result, probs) {
       
     //loop over result of prediction
     for (var i = 0; i < result.length; i++) {
-        if (k == 0 && result[i] == "hand"){
+        if (k == 1 && result[i] == "hand"){
             document.getElementById('prob1').innerHTML = Math.round(probs[i] * 100)
-        } else if (k == 1 && result[i] == "face"){
+        } else if (k == 2 && result[i] == "face"){
              document.getElementById('prob2').innerHTML = Math.round(probs[i] * 100)
-        } else if (k == 2 && result[i] == "foot"){
+        } else if (k == 3 && result[i] == "foot"){
              document.getElementById('prob3').innerHTML = Math.round(probs[i] * 100)
         }
     }
@@ -118,7 +118,7 @@ function getFrame() {
 
 function drawingResult(){
     if (k < 3){
-        k++
+        k = k + 1
         erase()
         
         if (k == 1)
@@ -223,9 +223,10 @@ async function start() {
 //allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
-     
+    
     document.getElementById('status').innerHTML = 'Start Drawing!';
-    document.getElementById('drawStat').innerText = 'Draw Hand';
+    document.getElementById('drawStat').innerText = 'Draw Hand 1';
+    k = 0;
    
     $('button').prop('disabled', false);
     /*var slider = document.getElementById('myRange');
