@@ -125,7 +125,7 @@ function drawingResult(){
         if (k == 1)
             document.getElementById('drawStat').innerHTML = 'Draw Face'
         else if (k == 2)
-            document.getElementById('drawStat').innerHTML = 'Draw Foot';
+            document.getElementById('drawStat').innerHTML = 'Draw Foot'
         else if (k == 3)
             document.getElementById("nextButton").textContent = "Done"
     }           
