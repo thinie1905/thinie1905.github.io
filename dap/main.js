@@ -225,7 +225,6 @@ function allowDrawing() {
     
     document.getElementById('status').innerHTML = 'Start Drawing!';
     document.getElementById('drawStat').innerText = 'Draw Hand 2';
-    k = 0;
    
     $('button').prop('disabled', false);
     /*var slider = document.getElementById('myRange');
