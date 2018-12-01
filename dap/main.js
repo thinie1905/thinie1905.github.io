@@ -224,7 +224,7 @@ function allowDrawing() {
     canvas.isDrawingMode = 1;
      
     document.getElementById('status').innerHTML = 'Start Drawing!';
-    document.getElementById('drawStat').innerHTML = 'Draw Hand';
+    document.getElementById('drawStat').innerText = 'Draw Hand';
    
     $('button').prop('disabled', false);
     /*var slider = document.getElementById('myRange');
