@@ -137,7 +137,7 @@ function getClassNames(inp, indices, choice) {
     var temp = ""
     var j=0;
         
-    document.getElementById('status').innerHTML = 'Prediction Score = ' + inp[indices[0]];
+    document.getElementById('status').innerHTML = 'Class Names = ' + classNames[indices[0]];
     
     for (var i = 0; i < indices.length; i++){
         temp = classNames[indices[i]]
@@ -162,7 +162,7 @@ async function loadDict() {
     //if (mode == 'ar')
         //loc = 'model2/class_names_ar.txt'
     //else
-        loc = 'model/class_names.txt'
+        loc = 'model2/class_names.txt'
     
     await $.ajax({
         url: loc,
@@ -255,7 +255,7 @@ allow drawing on canvas
 function allowDrawing() {
     canvas.isDrawingMode = 1;
      
-    document.getElementById('status').innerHTML = 'Model Loaded E';
+    document.getElementById('status').innerHTML = 'Model Loaded A';
    
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
