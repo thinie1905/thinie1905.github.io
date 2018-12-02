@@ -120,7 +120,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 	  <center><p id='drawStat'> </p></center>
 	  <canvas id="canvas" width="800" height="350" class="canvas" style="border:1px solid #b9bfc9;margin-top:15px;"></canvas>
 	  <div class="btn-group" style ='background-color: #ffffff; margin-top:40px; position: relative; left: 350px;'>
-		  <button type="button" class="button button2" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button> &emsp; <button type="button" class="button button2" onclick ='startAgain()' style ='margin-left:10px;' disabled>Start Again</button> &emsp; <a type="button" href="#" class="button button2" id="btn-download" download="drawing.png">Save</a> &emsp; <button type="button" class="button button2" id="nextButton" onclick="drawingResult();">Next</button> <br/>
+		  <center><button type="button" class="button button2" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button> &emsp; <button type="button" class="button button2" onclick ='startAgain()' style ='margin-left:10px;' disabled>Start Again</button> &emsp; <a type="button" href="#" class="button button2" id="btn-download" download="drawing.png">Save</a> &emsp; <button type="button" class="button button2" id="nextButton" onclick="drawingResult();">Next</button> <br/></center>
 	
 		<script>
 			var button = document.getElementById('btn-download');
@@ -153,6 +153,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
         <em id = "sym4">Score</em>
         <span id = "prob4"></span>
       </li>
+	    <hr>
 	   
 	<!-- Trigger/Open The Modal -->
 	    <center><button class="button button2" id="myBtn" onclick ='onClick()'>Report</button></center>
