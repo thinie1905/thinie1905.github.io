@@ -79,14 +79,31 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 }
 
 .modal-body {padding: 2px 16px;}
-	
-#buttony, #btn-download, #nextButton, #myBtn {
-    font-size: 15px;
-	color: #000000;
-    padding: 10px;
-    -webkit-appearance: none;
-    background: #eee;
-    border: 1px solid #888;
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button2 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+.button2:hover {
+    background-color: #008CBA;
+    color: white;
 }
 </style>	
 	
@@ -103,7 +120,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 	  <center><p id='drawStat'> </p></center>
 	  <canvas id="canvas" width="800" height="350" class="canvas" style="border:1px solid #b9bfc9;margin-top:15px;"></canvas>
 	  <div class="btn-group" style ='background-color: #ffffff; margin-top:40px; position: relative; left: 400px;'>
-		  <button type="button" id="buttony" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button> &emsp; <button type="button" id="buttony" onclick ='startAgain()' style ='margin-left:10px;' disabled>Start Again</button> &emsp; <a type="button" href="#" id="btn-download" download="drawing.png">Save</a> &emsp; <button type="button" id="nextButton" onclick="drawingResult();">Next</button> <br/>
+		  <button type="button" class="button button2" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button> &emsp; <button type="button" class="button button2" onclick ='startAgain()' style ='margin-left:10px;' disabled>Start Again</button> &emsp; <a type="button" href="#" class="button button2" id="btn-download" download="drawing.png">Save</a> &emsp; <button type="button" class="button button2" id="nextButton" onclick="drawingResult();">Next</button> <br/>
 	
 		<script>
 			var button = document.getElementById('btn-download');
@@ -138,7 +155,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
       </li>
 	   
 	<!-- Trigger/Open The Modal -->
-	<button id="myBtn" onclick ='onClick()'>Report</button>
+	    <center><button class="button button2" id="myBtn" onclick ='onClick()'>Report</button></center>
 
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
