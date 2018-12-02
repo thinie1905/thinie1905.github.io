@@ -59,7 +59,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    color: white;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -71,6 +71,14 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
     text-decoration: none;
     cursor: pointer;
 }
+	
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
 	
 #buttony, #btn-download, #nextButton, #myBtn {
     font-size: 15px;
@@ -91,7 +99,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 
 <div class="row">
   <div class="col" style="background-color: #ffffff; margin-left:100px;">
-	  <br/><center><h4 id ='status' >Please wait... </h4></center>
+	  <br/><center><h4 id ='status' >Please wait... h</h4></center>
 	  <center><p id='drawStat'> </p></center>
 	  <canvas id="canvas" width="800" height="350" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
 	  <div class="btn-group" style ='background-color: #ffffff; margin-top:40px; position: relative; left: 380px;'>
@@ -126,23 +134,29 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
       </li>
 	    <hr>
       <li>
-        <em id = "sym4"></em>
+        <em id = "sym4">Score</em>
         <span id = "prob4"></span>
       </li>
     </ul>
 	   
 	<!-- Trigger/Open The Modal -->
-	<button id="myBtn">Open Modal</button>
+	<button id="myBtn">Report</button>
 
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 
  		<!-- Modal content -->
   		<div class="modal-content">
-    			<span class="close">&times;</span>
-   			 <p>Some text in the Modal..</p>
+    			<div class="modal-header">
+      				<span class="close">&times;</span>
+      				<h2>Report</h2>
+    			</div>
+    			<div class="modal-body">
+      				<p id="scoringModal">No Score</p>
+				<p>The equivalence Mental Age (MA) to the score can be seen from the table below</p>
+				<center><img src="https://raw.githubusercontent.com/thinie1905/thinie1905.github.io/master/dap/mental_age_table.png" alt="MA Table" style="width:50%;height:50%;"></center>
+    			</div>
   		</div>
-
 	</div>
 	    <script>		
 		// Get the modal
@@ -153,10 +167,14 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
+		    
+		// Get the score
+		var score = document.getElementsById('prob4');
 
 		// When the user clicks the button, open the modal 
 		btn.onclick = function() {
     			modal.style.display = "block";
+			document.getElementsById('scoringModal').innerHTML = "The score for 3 drawings = " + score;
 		}
 
 		// When the user clicks on <span> (x), close the modal
