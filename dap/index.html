@@ -98,12 +98,10 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
   </nav>
 
 <div class="row">
-  <div class="col" margin-left:100px;">
-	  <div style="background-color: #ffffff;>
-	  	<br/><center><h4 id ='status' >Please wait... </h4></center>
-	  	<center><p id='drawStat'> </p></center>
-	  	<canvas id="canvas" width="800" height="350" class="canvas" style="border:1px solid #b9bfc9;margin-top:15px;"></canvas>
-	  </div>
+  <div class="col" style="background-color: #ffffff; margin-left:100px;">
+	  <br/><center><h4 id ='status' >Please wait... </h4></center>
+	  <center><p id='drawStat'> </p></center>
+	  <canvas id="canvas" width="800" height="350" class="canvas" style="border:1px solid #b9bfc9;margin-top:15px;"></canvas>
 	  <div class="btn-group" style ='background-color: #ffffff; margin-top:40px; position: relative; left: 400px;'>
 		  <button type="button" id="buttony" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button> &emsp; <button type="button" id="buttony" onclick ='startAgain()' style ='margin-left:10px;' disabled>Start Again</button> &emsp; <a type="button" href="#" id="btn-download" download="drawing.png">Save</a> &emsp; <button type="button" id="nextButton" onclick="drawingResult();">Next</button> <br/>
 	
@@ -117,7 +115,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 	  </div>   
 	</div>
   
-<div class="col" style="background-color: #ffffff;">
+<div class="col">
     <section style="margin-top:120px">
     
     <ul class="pieID legend">
