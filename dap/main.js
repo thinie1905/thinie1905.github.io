@@ -250,6 +250,8 @@ function startAgain(){
     coords = [];
     k = 0;
     
+    document.getElementById('drawStat').innerText = 'Draw Hand';
+    
      for (var i = 0; i < 3; i++) 
         document.getElementById('prob' + (i + 1)).innerHTML = ""
 }
