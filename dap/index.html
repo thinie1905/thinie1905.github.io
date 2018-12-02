@@ -99,7 +99,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 
 <div class="row">
   <div class="col" style="background-color: #ffffff; margin-left:100px;">
-	  <br/><center><h4 id ='status' >Please wait... C</h4></center>
+	  <br/><center><h4 id ='status' >Please wait... A</h4></center>
 	  <center><p id='drawStat'> </p></center>
 	  <canvas id="canvas" width="800" height="350" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
 	  <div class="btn-group" style ='background-color: #ffffff; margin-top:40px; position: relative; left: 380px;'>
@@ -167,18 +167,9 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
-		    
-		// Get the score
-		var score = document.getElementsById('prob4');
 
-		// When the user clicks the button, open the modal
-		/*btn.onclick = function() {
-    			modal.style.display = "block";
-			document.getElementsById('scoringModal').innerHTML = "The score for 3 drawings = " + score;
-		}*/
-		    
+		// When the user clicks the button, open the modal		    
 		function onClick(){
-			document.getElementsById('scoringModal').innerHTML = "The score for 3 drawings = " + score;
 			modal.style.display = "block";
 		}
 
