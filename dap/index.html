@@ -30,43 +30,96 @@
 <!-- main css -->
 <link rel = "stylesheet" href="main.css" > 
 	
+<style>
+body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie1905.github.io/master/dap/writing-background.gif'); background-repeat: repeat; font-family: 'Comic Sans MS';}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+	
+#buttony, #btn-download, #nextButton, #myModal {
+    font-size: 15px;
+    padding: 10px;
+    -webkit-appearance: none;
+    background: #eee;
+    border: 1px solid #888;
+}
+</style>	
+	
 </head>
-<body style="background-image: url('https://raw.githubusercontent.com/thinie1905/thinie1905.github.io/master/dap/writing-background.gif'); background-repeat: repeat; font-family: 'Comic Sans MS';" >
+<body>
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
   <!-- Brand/logo -->
   <a class="navbar-brand" href="#">Deep Learning in Draw-a-Person Cognitive Ability Test</a>
   </nav>
-<div class="container-fluid"> 
-
-<blockquote class="blockquote text-justify" style="margin:10px;">
- <!--<p>Draw something by holding down the mouse button or using single clicks.</p>
-		     <footer class="blockquote-footer">NURAINA FATHINIE | UTP</footer> -->
-  </blockquote>
-</div>
 
 <div class="row">
   <div class="col" style="background-color: #ffffff; margin-left:100px;">
-<br/><h4 id ='status' >Please wait... </h4>
-<p id='drawStat'> </p>
-<canvas id="canvas" width="800" height="400" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
-<div class="btn-group" style ='background-color: #ffffff; margin-top:40px; position: relative; left: 380px;'>
-<!-- <input type="range" min="5" max="20" value="4" class="slider" id="myRange" style ='margin-top:20px;'> -->
-<button type="button" class="btn btn-outline-primary" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button> &emsp; <button type="button" class="btn btn-outline-primary" onclick ='startAgain()' style ='margin-left:10px;' disabled>Start Again</button> &emsp; <a type="button" href="#" class="btn btn-outline-primary" id="btn-download" download="drawing.png">Save</a> &emsp; <button type="button" id="nextButton" class="btn btn-outline-primary" onclick="drawingResult();">Next</button> <br/>
-	<script>
-		var button = document.getElementById('btn-download');
-		button.addEventListener('click', function (e) {
-			var dataURL = canvas.toDataURL('image/png');
-			button.href = dataURL;
-		});
-	</script>
-	  
+	  <br/><center><h4 id ='status' >Please wait... </h4></center>
+	  <center><p id='drawStat'> </p></center>
+	  <canvas id="canvas" width="800" height="350" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
+	  <div class="btn-group" style ='background-color: #ffffff; margin-top:40px; position: relative; left: 380px;'>
+		  <!-- <input type="range" min="5" max="20" value="4" class="slider" id="myRange" style ='margin-top:20px;'> -->
+		  <button type="button" id="buttony" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button> &emsp; <button type="button" id="buttony" onclick ='startAgain()' style ='margin-left:10px;' disabled>Start Again</button> &emsp; <a type="button" href="#" id="btn-download" download="drawing.png">Save</a> &emsp; <button type="button" id="nextButton" onclick="drawingResult();">Next</button> <br/>
+	
+		 <!-- The Modal -->
+		  <div id="myModal" class="modal">
+
+			  <!-- Modal content -->
+			  <div class="modal-content">
+				  <span class="close">&times;</span>
+				  <p>Some text in the Modal..</p>
+			  </div>
+		  </div>
+	
+		<script>
+			var button = document.getElementById('btn-download');
+			button.addEventListener('click', function (e) {
+				var dataURL = canvas.toDataURL('image/png');
+				button.href = dataURL;
+			});
+		</script>
 	  </div>   
-</div>
-  <div class="col">
+	</div>
+  
+<div class="col" style="background-color: #ffffff;">
     <section style="margin-top:120px">
-    <!-- <div class="pieID pie">
-      
-    </div> -->
+    
     <ul class="pieID legend">
       <li>
         <em id = "sym1">Hand</em>
@@ -80,13 +133,43 @@
         <em id = "sym3">Foot</em>
         <span id = "prob3"></span>
       </li>
-      <!-- <li>
+      <li>
         <em id = "sym4"></em>
         <span id = "prob4"></span>
-      </li> -->
+      </li>
     </ul>
+	   
+	<button type="button" id="myModal" style ='margin-left:10px;' disabled>Result</button>
   </section>
 </div>
+	<script>		
+		// Get the modal
+		var modal = document.getElementById('myModal');
+
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks the button, open the modal 
+		btn.onclick = function() {
+    			modal.style.display = "block";
+		}
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+		    modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+    			if (event.target == modal) {
+        			modal.style.display = "none";
+    			}
+		}
+	</script>
+	
 </div>  
 </body>
 <script src="pie.js"></script>
