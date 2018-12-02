@@ -72,8 +72,9 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
     cursor: pointer;
 }
 	
-#buttony, #btn-download, #nextButton, #myModal {
+#buttony, #btn-download, #nextButton, #myBtn {
     font-size: 15px;
+	color: #000000;
     padding: 10px;
     -webkit-appearance: none;
     background: #eee;
@@ -130,20 +131,20 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
       </li>
     </ul>
 	   
-	<button type="button" id="myModal" style ='margin-left:10px;' disabled>Result</button>
-	    
-	    <!-- The Modal -->
-		  <div id="myModal" class="modal">
+	<!-- Trigger/Open The Modal -->
+	<button id="myBtn">Open Modal</button>
 
-			  <!-- Modal content -->
-			  <div class="modal-content">
-				  <span class="close">&times;</span>
-				  <p>Some text in the Modal..</p>
-			  </div>
-		  </div>
-  </section>
-</div>
-	<script>		
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+ 		<!-- Modal content -->
+  		<div class="modal-content">
+    			<span class="close">&times;</span>
+   			 <p>Some text in the Modal..</p>
+  		</div>
+
+	</div>
+	    <script>		
 		// Get the modal
 		var modal = document.getElementById('myModal');
 
@@ -170,6 +171,8 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
     			}
 		}
 	</script>
+  </section>
+</div>
 	
 </div>  
 </body>
