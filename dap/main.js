@@ -119,17 +119,27 @@ function getFrame() {
 function drawingResult(){
     if (k < 3){  
         getFrame()
-        k = k + 1
         erase()
         
-        if (k == 1)
+        if (k == 0)
             document.getElementById('drawStat').innerText = 'Draw Face'
-        else if (k == 2){
+        else if (k == 1){
             document.getElementById('drawStat').innerText = 'Draw Foot'
+            document.getElementById("nextButton").textContent = "Next"
+        } else if (k == 2)
             document.getElementById("nextButton").textContent = "Done"
-        } else if (k == 3)
-            document.getElementById("nextButton").textContent = "Result"
-    }           
+        
+        k = k + 1
+    }
+    else if (k == 3){
+        var score1 = document.getElementById('prob1').innerHTML;
+        var score2 = document.getElementById('prob2').innerHTML;
+        var score3 = document.getElementById('prob3').innerHTML;
+        
+        var total = Number(score1) + Number(score2) + Number(score3);
+        document.getElementById('prob4').innerHTML = total;
+        document.getElementById('scoringModal').innerText = "The total score of 3 drawings = " + total;
+    }
 }
 
 //get the the class names 
@@ -224,7 +234,7 @@ async function start() {
 function allowDrawing() {
     canvas.isDrawingMode = 1;
     
-    document.getElementById('status').innerHTML = 'Start Drawing!';
+    document.getElementById('status').innerHTML = 'Start Drawing! A';
     document.getElementById('drawStat').innerText = 'Draw Hand';
    
     $('button').prop('disabled', false);
