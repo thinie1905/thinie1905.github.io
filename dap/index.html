@@ -99,7 +99,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 
 <div class="row">
   <div class="col" style="background-color: #ffffff; margin-left:100px;">
-	  <br/><center><h4 id ='status' >Please wait... B</h4></center>
+	  <br/><center><h4 id ='status' >Please wait... C</h4></center>
 	  <center><p id='drawStat'> </p></center>
 	  <canvas id="canvas" width="800" height="350" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
 	  <div class="btn-group" style ='background-color: #ffffff; margin-top:40px; position: relative; left: 380px;'>
@@ -149,7 +149,7 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
   		<div class="modal-content">
     			<div class="modal-header">
 				<h2>Report</h2>
-      				<span class="close">&times;</span>
+      				<span class="close" onclick = 'closeModal()'>&times;</span>
     			</div>
     			<div class="modal-body">
       				<p id="scoringModal">No Score</p>
@@ -178,15 +178,19 @@ body {background-image: url('https://raw.githubusercontent.com/thinie1905/thinie
 		}*/
 		    
 		function onClick(){
-			modal.style.display = "block";
 			document.getElementsById('scoringModal').innerHTML = "The score for 3 drawings = " + score;
+			modal.style.display = "block";
 		}
 
 		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
+		/*span.onclick = function() {
 		    modal.style.display = "none";
+		}*/
+		
+		function closeModal(){
+			modal.style.display = "none";
 		}
-
+			
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
     			if (event.target == modal) {
