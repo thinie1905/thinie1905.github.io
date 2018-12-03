@@ -125,7 +125,6 @@ function drawingResult(){
             document.getElementById('drawStat').innerText = 'Draw Face'
         else if (k == 1){
             document.getElementById('drawStat').innerText = 'Draw Foot'
-            document.getElementById("nextButton").textContent = "Next"
         } else if (k == 2)
             document.getElementById("nextButton").textContent = "Done"
         
@@ -251,8 +250,9 @@ function startAgain(){
     k = 0;
     
     document.getElementById('drawStat').innerText = 'Draw Hand';
+    document.getElementById("nextButton").textContent = "Next"
     
-     for (var i = 0; i < 3; i++) 
+     for (var i = 0; i < 4; i++) 
         document.getElementById('prob' + (i + 1)).innerHTML = ""
 }
 
